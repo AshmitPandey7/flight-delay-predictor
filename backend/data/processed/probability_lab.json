@@ -1,0 +1,56 @@
+{
+  "total_flights": 538837,
+  "marginal_outcomes": {
+    "On-Time": {
+      "count": 415652,
+      "prob": 0.7714
+    },
+    "Delayed": {
+      "count": 112890,
+      "prob": 0.2095
+    },
+    "Cancelled": {
+      "count": 10295,
+      "prob": 0.0191
+    }
+  },
+  "marginal_weather": {
+    "Clear": {
+      "count": 470083,
+      "prob": 0.8724
+    },
+    "Moderate": {
+      "count": 57196,
+      "prob": 0.1061
+    },
+    "Severe_Storm_Fog": {
+      "count": 11558,
+      "prob": 0.0214
+    }
+  },
+  "conditional_probabilities": {
+    "P(Delayed | Clear)": 0.1081,
+    "P(Cancelled | Clear)": 0.0078,
+    "P(Delayed | Moderate)": 0.9986,
+    "P(Cancelled | Moderate)": 0.0,
+    "P(Delayed | Severe_Storm_Fog)": 0.428,
+    "P(Cancelled | Severe_Storm_Fog)": 0.572
+  },
+  "contingency_table": {
+    "0": {
+      "0": 415571,
+      "1": 81,
+      "2": 0
+    },
+    "1": {
+      "0": 50828,
+      "1": 57115,
+      "2": 4947
+    },
+    "2": {
+      "0": 3684,
+      "1": 0,
+      "2": 6611
+    }
+  }
+}

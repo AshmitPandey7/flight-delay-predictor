@@ -1,0 +1,134 @@
+{
+  "test_sample_size": 27649,
+  "logistic_regression_calibrated": {
+    "accuracy": 0.8621,
+    "log_loss": 0.3992,
+    "brier_score": 0.2275,
+    "confusion_matrix": [
+      [
+        20973,
+        4,
+        0
+      ],
+      [
+        2945,
+        2863,
+        0
+      ],
+      [
+        127,
+        737,
+        0
+      ]
+    ],
+    "calibration_curve": [
+      {
+        "pred_bin": 0.05,
+        "mean_pred": 0.083,
+        "empirical_prob": 0.109,
+        "count": 9514
+      },
+      {
+        "pred_bin": 0.15,
+        "mean_pred": 0.13,
+        "empirical_prob": 0.131,
+        "count": 14060
+      },
+      {
+        "pred_bin": 0.25,
+        "mean_pred": 0.219,
+        "empirical_prob": 0.149,
+        "count": 471
+      },
+      {
+        "pred_bin": 0.75,
+        "mean_pred": 0.746,
+        "empirical_prob": 0.266,
+        "count": 972
+      },
+      {
+        "pred_bin": 0.85,
+        "mean_pred": 0.812,
+        "empirical_prob": 0.613,
+        "count": 62
+      },
+      {
+        "pred_bin": 0.95,
+        "mean_pred": 0.939,
+        "empirical_prob": 0.998,
+        "count": 2570
+      }
+    ]
+  },
+  "naive_bayes": {
+    "accuracy": 0.8736,
+    "log_loss": 0.6984,
+    "brier_score": 0.2421,
+    "calibration_curve": [
+      {
+        "pred_bin": 0.05,
+        "mean_pred": 0.004,
+        "empirical_prob": 0.122,
+        "count": 24043
+      },
+      {
+        "pred_bin": 0.25,
+        "mean_pred": 0.267,
+        "empirical_prob": 0.252,
+        "count": 222
+      },
+      {
+        "pred_bin": 0.35,
+        "mean_pred": 0.342,
+        "empirical_prob": 0.234,
+        "count": 278
+      },
+      {
+        "pred_bin": 0.45,
+        "mean_pred": 0.449,
+        "empirical_prob": 0.231,
+        "count": 117
+      },
+      {
+        "pred_bin": 0.55,
+        "mean_pred": 0.547,
+        "empirical_prob": 0.246,
+        "count": 191
+      },
+      {
+        "pred_bin": 0.65,
+        "mean_pred": 0.648,
+        "empirical_prob": 0.315,
+        "count": 73
+      },
+      {
+        "pred_bin": 0.75,
+        "mean_pred": 0.767,
+        "empirical_prob": 0.947,
+        "count": 209
+      },
+      {
+        "pred_bin": 0.85,
+        "mean_pred": 0.85,
+        "empirical_prob": 0.999,
+        "count": 765
+      },
+      {
+        "pred_bin": 0.95,
+        "mean_pred": 0.968,
+        "empirical_prob": 0.964,
+        "count": 1741
+      }
+    ]
+  },
+  "feature_names": [
+    "dep_hour",
+    "day_of_week",
+    "dist_scaled",
+    "weather_severity",
+    "carrier_del_rate",
+    "origin_del_rate",
+    "is_evening",
+    "is_weekend"
+  ]
+}

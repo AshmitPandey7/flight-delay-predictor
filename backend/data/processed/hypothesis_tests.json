@@ -1,0 +1,142 @@
+{
+  "welch_t_test": {
+    "name": "Welch's Two-Sample t-Test (Weather Impact on Delay Duration)",
+    "null_hypothesis": "H0: True mean arrival delay in adverse weather equals mean arrival delay in clear weather (mu_bad = mu_clear)",
+    "alt_hypothesis": "H1: True mean arrival delay in adverse weather is greater than in clear weather (mu_bad > mu_clear)",
+    "sample_sizes": {
+      "adverse_weather_n": 62062,
+      "clear_weather_n": 50828
+    },
+    "group_means": {
+      "adverse_weather_mean": 106.81,
+      "clear_weather_mean": 27.91
+    },
+    "test_statistic": 160.8929,
+    "p_value": 0.0,
+    "effect_size": {
+      "type": "Cohen's d",
+      "value": 0.915,
+      "interpretation": "Medium-to-large effect"
+    },
+    "alpha": 0.05,
+    "decision": "Reject H0 (Statistically significant at alpha=0.05)",
+    "conclusion": "Arrival delay duration is significantly higher during adverse weather conditions (p < 0.0001)."
+  },
+  "two_prop_z_test": {
+    "name": "Two-Proportion z-Test (Evening Congestion vs Morning OTP)",
+    "null_hypothesis": "H0: The proportion of delayed flights in evening peak (17:00-21:00) equals morning departures (06:00-10:00) (p_evening = p_morning)",
+    "alt_hypothesis": "H1: The proportion of delayed flights differs significantly between evening and morning (p_evening != p_morning)",
+    "proportions": {
+      "evening": {
+        "n": 137367,
+        "delayed": 35659,
+        "rate_pct": 25.96
+      },
+      "morning": {
+        "n": 175656,
+        "delayed": 28240,
+        "rate_pct": 16.08
+      }
+    },
+    "difference_pct": 9.88,
+    "ci_95_diff_pct": [
+      9.59,
+      10.17
+    ],
+    "test_statistic_z": 68.0696,
+    "p_value": 0.0,
+    "alpha": 0.05,
+    "decision": "Reject H0 (Statistically significant at alpha=0.05)",
+    "conclusion": "Evening peak departures experience a significantly higher delay rate than morning flights due to network cascade delays."
+  },
+  "chi_square_test": {
+    "name": "Chi-Square Test of Independence (Weather Severity vs Flight Outcome)",
+    "null_hypothesis": "H0: Flight outcome (On-Time, Delayed, Cancelled) is independent of weather severity category",
+    "alt_hypothesis": "H1: Flight outcome is dependent on weather severity category",
+    "degrees_of_freedom": 4,
+    "chi2_statistic": 445419.44,
+    "p_value": 0.0,
+    "effect_size": {
+      "type": "Cram\u00e9r's V",
+      "value": 0.643
+    },
+    "alpha": 0.05,
+    "decision": "Reject H0 (Statistically significant at alpha=0.05)",
+    "contingency_matrix": {
+      "rows_weather": [
+        "Clear / Normal",
+        "Moderate",
+        "Severe / Winter Storm"
+      ],
+      "cols_outcomes": [
+        "On-Time",
+        "Delayed",
+        "Cancelled"
+      ],
+      "observed": [
+        [
+          415571,
+          50828,
+          3684
+        ],
+        [
+          81,
+          57115,
+          0
+        ],
+        [
+          0,
+          4947,
+          6611
+        ]
+      ],
+      "expected": [
+        [
+          362616.0,
+          98485.6,
+          8981.4
+        ],
+        [
+          44120.3,
+          11982.9,
+          1092.8
+        ],
+        [
+          8915.7,
+          2421.5,
+          220.8
+        ]
+      ]
+    }
+  },
+  "anova_test": {
+    "name": "One-Way ANOVA (Arrival Delay Discrepancies Across Major Airlines)",
+    "null_hypothesis": "H0: Mean arrival delay duration is identical across carriers (mu_AA = mu_DL = mu_UA = mu_WN = mu_B6)",
+    "alt_hypothesis": "H1: At least one carrier has a significantly different mean arrival delay duration",
+    "tested_carriers": [
+      "AA (American)",
+      "DL (Delta)",
+      "UA (United)",
+      "WN (Southwest)",
+      "B6 (JetBlue)"
+    ],
+    "f_statistic": 117.317,
+    "p_value": 6.4154e-100,
+    "effect_size": {
+      "type": "Eta-squared (eta^2)",
+      "value": 0.0066
+    },
+    "alpha": 0.05,
+    "decision": "Reject H0 (Statistically significant at alpha=0.05)",
+    "conclusion": "Statistically significant variance in delay durations exists across primary carriers."
+  },
+  "correlation_analysis": {
+    "name": "Correlation Analysis (Departure Delay Propagation to Arrival Delay)",
+    "sample_size": 10000,
+    "pearson_r": 0.9673,
+    "pearson_p_value": 0.0,
+    "spearman_rho": 0.6877,
+    "spearman_p_value": 0.0,
+    "interpretation": "Extremely strong positive correlation showing ground departure delays propagate almost 1:1 into destination arrival delays."
+  }
+}

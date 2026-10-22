@@ -1,0 +1,511 @@
+{
+  "sample_size": 112890,
+  "mean": 71.29,
+  "median": 42.0,
+  "variance": 9705.46,
+  "std_dev": 98.52,
+  "skewness": 6.951,
+  "kurtosis": 80.7,
+  "q25": 25.0,
+  "q75": 81.0,
+  "iqr": 56.0,
+  "lognorm_params": {
+    "mu_log": 3.8743,
+    "sigma_log": 0.7986,
+    "fitted_median": 48.1
+  },
+  "histogram": [
+    {
+      "bin_start": 16.0,
+      "bin_end": 21.5,
+      "bin_mid": 18.7,
+      "count": 19160,
+      "density_pct": 16.97,
+      "fitted_lognorm_pdf": 1.325
+    },
+    {
+      "bin_start": 21.5,
+      "bin_end": 26.9,
+      "bin_mid": 24.2,
+      "count": 12075,
+      "density_pct": 10.7,
+      "fitted_lognorm_pdf": 1.424
+    },
+    {
+      "bin_start": 26.9,
+      "bin_end": 32.4,
+      "bin_mid": 29.7,
+      "count": 11471,
+      "density_pct": 10.16,
+      "fitted_lognorm_pdf": 1.401
+    },
+    {
+      "bin_start": 32.4,
+      "bin_end": 37.9,
+      "bin_mid": 35.1,
+      "count": 7685,
+      "density_pct": 6.81,
+      "fitted_lognorm_pdf": 1.316
+    },
+    {
+      "bin_start": 37.9,
+      "bin_end": 43.3,
+      "bin_mid": 40.6,
+      "count": 7579,
+      "density_pct": 6.71,
+      "fitted_lognorm_pdf": 1.203
+    },
+    {
+      "bin_start": 43.3,
+      "bin_end": 48.8,
+      "bin_mid": 46.1,
+      "count": 5330,
+      "density_pct": 4.72,
+      "fitted_lognorm_pdf": 1.082
+    },
+    {
+      "bin_start": 48.8,
+      "bin_end": 54.3,
+      "bin_mid": 51.5,
+      "count": 5294,
+      "density_pct": 4.69,
+      "fitted_lognorm_pdf": 0.967
+    },
+    {
+      "bin_start": 54.3,
+      "bin_end": 59.7,
+      "bin_mid": 57.0,
+      "count": 3859,
+      "density_pct": 3.42,
+      "fitted_lognorm_pdf": 0.857
+    },
+    {
+      "bin_start": 59.7,
+      "bin_end": 65.2,
+      "bin_mid": 62.5,
+      "count": 3988,
+      "density_pct": 3.53,
+      "fitted_lognorm_pdf": 0.758
+    },
+    {
+      "bin_start": 65.2,
+      "bin_end": 70.7,
+      "bin_mid": 67.9,
+      "count": 2930,
+      "density_pct": 2.6,
+      "fitted_lognorm_pdf": 0.671
+    },
+    {
+      "bin_start": 70.7,
+      "bin_end": 76.1,
+      "bin_mid": 73.4,
+      "count": 3122,
+      "density_pct": 2.77,
+      "fitted_lognorm_pdf": 0.592
+    },
+    {
+      "bin_start": 76.1,
+      "bin_end": 81.6,
+      "bin_mid": 78.9,
+      "count": 2317,
+      "density_pct": 2.05,
+      "fitted_lognorm_pdf": 0.523
+    },
+    {
+      "bin_start": 81.6,
+      "bin_end": 87.1,
+      "bin_mid": 84.3,
+      "count": 2574,
+      "density_pct": 2.28,
+      "fitted_lognorm_pdf": 0.463
+    },
+    {
+      "bin_start": 87.1,
+      "bin_end": 92.5,
+      "bin_mid": 89.8,
+      "count": 1741,
+      "density_pct": 1.54,
+      "fitted_lognorm_pdf": 0.41
+    },
+    {
+      "bin_start": 92.5,
+      "bin_end": 98.0,
+      "bin_mid": 95.3,
+      "count": 1717,
+      "density_pct": 1.52,
+      "fitted_lognorm_pdf": 0.364
+    },
+    {
+      "bin_start": 98.0,
+      "bin_end": 103.5,
+      "bin_mid": 100.7,
+      "count": 1871,
+      "density_pct": 1.66,
+      "fitted_lognorm_pdf": 0.324
+    },
+    {
+      "bin_start": 103.5,
+      "bin_end": 108.9,
+      "bin_mid": 106.2,
+      "count": 1380,
+      "density_pct": 1.22,
+      "fitted_lognorm_pdf": 0.288
+    },
+    {
+      "bin_start": 108.9,
+      "bin_end": 114.4,
+      "bin_mid": 111.7,
+      "count": 1472,
+      "density_pct": 1.3,
+      "fitted_lognorm_pdf": 0.257
+    },
+    {
+      "bin_start": 114.4,
+      "bin_end": 119.9,
+      "bin_mid": 117.1,
+      "count": 1123,
+      "density_pct": 0.99,
+      "fitted_lognorm_pdf": 0.23
+    },
+    {
+      "bin_start": 119.9,
+      "bin_end": 125.3,
+      "bin_mid": 122.6,
+      "count": 1283,
+      "density_pct": 1.14,
+      "fitted_lognorm_pdf": 0.205
+    },
+    {
+      "bin_start": 125.3,
+      "bin_end": 130.8,
+      "bin_mid": 128.1,
+      "count": 999,
+      "density_pct": 0.88,
+      "fitted_lognorm_pdf": 0.184
+    },
+    {
+      "bin_start": 130.8,
+      "bin_end": 136.3,
+      "bin_mid": 133.5,
+      "count": 1102,
+      "density_pct": 0.98,
+      "fitted_lognorm_pdf": 0.166
+    },
+    {
+      "bin_start": 136.3,
+      "bin_end": 141.7,
+      "bin_mid": 139.0,
+      "count": 801,
+      "density_pct": 0.71,
+      "fitted_lognorm_pdf": 0.149
+    },
+    {
+      "bin_start": 141.7,
+      "bin_end": 147.2,
+      "bin_mid": 144.5,
+      "count": 879,
+      "density_pct": 0.78,
+      "fitted_lognorm_pdf": 0.134
+    },
+    {
+      "bin_start": 147.2,
+      "bin_end": 152.7,
+      "bin_mid": 149.9,
+      "count": 719,
+      "density_pct": 0.64,
+      "fitted_lognorm_pdf": 0.121
+    },
+    {
+      "bin_start": 152.7,
+      "bin_end": 158.1,
+      "bin_mid": 155.4,
+      "count": 752,
+      "density_pct": 0.67,
+      "fitted_lognorm_pdf": 0.11
+    },
+    {
+      "bin_start": 158.1,
+      "bin_end": 163.6,
+      "bin_mid": 160.9,
+      "count": 581,
+      "density_pct": 0.51,
+      "fitted_lognorm_pdf": 0.099
+    },
+    {
+      "bin_start": 163.6,
+      "bin_end": 169.1,
+      "bin_mid": 166.3,
+      "count": 697,
+      "density_pct": 0.62,
+      "fitted_lognorm_pdf": 0.09
+    },
+    {
+      "bin_start": 169.1,
+      "bin_end": 174.5,
+      "bin_mid": 171.8,
+      "count": 478,
+      "density_pct": 0.42,
+      "fitted_lognorm_pdf": 0.082
+    },
+    {
+      "bin_start": 174.5,
+      "bin_end": 180.0,
+      "bin_mid": 177.3,
+      "count": 518,
+      "density_pct": 0.46,
+      "fitted_lognorm_pdf": 0.074
+    }
+  ],
+  "qq_plot": [
+    {
+      "quantile": 0.01,
+      "theoretical": 7.5,
+      "empirical": 16.0
+    },
+    {
+      "quantile": 0.03,
+      "theoretical": 10.7,
+      "empirical": 16.0
+    },
+    {
+      "quantile": 0.05,
+      "theoretical": 12.9,
+      "empirical": 17.0
+    },
+    {
+      "quantile": 0.07,
+      "theoretical": 14.8,
+      "empirical": 18.0
+    },
+    {
+      "quantile": 0.09,
+      "theoretical": 16.5,
+      "empirical": 18.0
+    },
+    {
+      "quantile": 0.11,
+      "theoretical": 18.1,
+      "empirical": 19.0
+    },
+    {
+      "quantile": 0.13,
+      "theoretical": 19.6,
+      "empirical": 20.0
+    },
+    {
+      "quantile": 0.15,
+      "theoretical": 21.0,
+      "empirical": 21.0
+    },
+    {
+      "quantile": 0.17,
+      "theoretical": 22.5,
+      "empirical": 22.0
+    },
+    {
+      "quantile": 0.19,
+      "theoretical": 23.9,
+      "empirical": 22.0
+    },
+    {
+      "quantile": 0.21,
+      "theoretical": 25.3,
+      "empirical": 23.0
+    },
+    {
+      "quantile": 0.23,
+      "theoretical": 26.7,
+      "empirical": 24.0
+    },
+    {
+      "quantile": 0.25,
+      "theoretical": 28.1,
+      "empirical": 25.0
+    },
+    {
+      "quantile": 0.27,
+      "theoretical": 29.5,
+      "empirical": 26.0
+    },
+    {
+      "quantile": 0.29,
+      "theoretical": 30.9,
+      "empirical": 27.0
+    },
+    {
+      "quantile": 0.31,
+      "theoretical": 32.4,
+      "empirical": 28.0
+    },
+    {
+      "quantile": 0.33,
+      "theoretical": 33.9,
+      "empirical": 29.0
+    },
+    {
+      "quantile": 0.35,
+      "theoretical": 35.4,
+      "empirical": 31.0
+    },
+    {
+      "quantile": 0.37,
+      "theoretical": 36.9,
+      "empirical": 32.0
+    },
+    {
+      "quantile": 0.39,
+      "theoretical": 38.5,
+      "empirical": 33.0
+    },
+    {
+      "quantile": 0.41,
+      "theoretical": 40.1,
+      "empirical": 35.0
+    },
+    {
+      "quantile": 0.43,
+      "theoretical": 41.8,
+      "empirical": 36.0
+    },
+    {
+      "quantile": 0.45,
+      "theoretical": 43.6,
+      "empirical": 38.0
+    },
+    {
+      "quantile": 0.47,
+      "theoretical": 45.3,
+      "empirical": 40.0
+    },
+    {
+      "quantile": 0.49,
+      "theoretical": 47.2,
+      "empirical": 41.0
+    },
+    {
+      "quantile": 0.51,
+      "theoretical": 49.1,
+      "empirical": 43.0
+    },
+    {
+      "quantile": 0.53,
+      "theoretical": 51.1,
+      "empirical": 45.0
+    },
+    {
+      "quantile": 0.55,
+      "theoretical": 53.2,
+      "empirical": 47.0
+    },
+    {
+      "quantile": 0.57,
+      "theoretical": 55.4,
+      "empirical": 50.0
+    },
+    {
+      "quantile": 0.59,
+      "theoretical": 57.7,
+      "empirical": 52.0
+    },
+    {
+      "quantile": 0.61,
+      "theoretical": 60.2,
+      "empirical": 55.0
+    },
+    {
+      "quantile": 0.63,
+      "theoretical": 62.8,
+      "empirical": 58.0
+    },
+    {
+      "quantile": 0.65,
+      "theoretical": 65.5,
+      "empirical": 61.0
+    },
+    {
+      "quantile": 0.67,
+      "theoretical": 68.4,
+      "empirical": 64.0
+    },
+    {
+      "quantile": 0.69,
+      "theoretical": 71.5,
+      "empirical": 68.0
+    },
+    {
+      "quantile": 0.71,
+      "theoretical": 74.9,
+      "empirical": 72.0
+    },
+    {
+      "quantile": 0.73,
+      "theoretical": 78.5,
+      "empirical": 76.0
+    },
+    {
+      "quantile": 0.75,
+      "theoretical": 82.5,
+      "empirical": 81.0
+    },
+    {
+      "quantile": 0.77,
+      "theoretical": 86.9,
+      "empirical": 86.0
+    },
+    {
+      "quantile": 0.79,
+      "theoretical": 91.7,
+      "empirical": 93.0
+    },
+    {
+      "quantile": 0.81,
+      "theoretical": 97.1,
+      "empirical": 99.0
+    },
+    {
+      "quantile": 0.83,
+      "theoretical": 103.2,
+      "empirical": 107.0
+    },
+    {
+      "quantile": 0.85,
+      "theoretical": 110.2,
+      "empirical": 116.0
+    },
+    {
+      "quantile": 0.87,
+      "theoretical": 118.4,
+      "empirical": 127.0
+    },
+    {
+      "quantile": 0.89,
+      "theoretical": 128.2,
+      "empirical": 139.0
+    },
+    {
+      "quantile": 0.91,
+      "theoretical": 140.5,
+      "empirical": 154.0
+    },
+    {
+      "quantile": 0.93,
+      "theoretical": 156.5,
+      "empirical": 175.0
+    },
+    {
+      "quantile": 0.95,
+      "theoretical": 179.1,
+      "empirical": 204.0
+    },
+    {
+      "quantile": 0.97,
+      "theoretical": 216.2,
+      "empirical": 253.0
+    },
+    {
+      "quantile": 0.99,
+      "theoretical": 308.7,
+      "empirical": 454.1
+    }
+  ]
+}

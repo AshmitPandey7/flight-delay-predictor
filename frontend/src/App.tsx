@@ -130,7 +130,7 @@ function App() {
     });
   };
 
-  // If not authenticated, render the Cinematic Landing Page
+  // If not authenticated, render the Clean Landing Page
   if (!isAuthenticated) {
     return (
       <>
@@ -194,83 +194,72 @@ function App() {
   };
 
   return (
-    <div className="min-h-screen flex flex-col bg-[#07070b] text-slate-100 selection:bg-purple-500 selection:text-white">
+    <div className="min-h-screen flex flex-col bg-[#09090b] text-zinc-100 selection:bg-white selection:text-black">
       
-      {/* Global Navigation Header - Black & Purple Theme */}
-      <header className="border-b border-purple-500/15 bg-[#090910]/85 backdrop-blur-xl sticky top-0 z-50">
-        <div className="max-w-7xl mx-auto px-4 h-16 flex items-center justify-between">
+      {/* Global Navigation Header - Clean Professional Dark Monochrome */}
+      <header className="border-b border-zinc-800 bg-[#09090b]/95 backdrop-blur-md sticky top-0 z-50">
+        <div className="max-w-7xl mx-auto px-6 h-16 flex items-center justify-between">
           
-          {/* Logo */}
-          <div className="flex items-center gap-2.5 cursor-pointer" onClick={() => handleNavigate('home')}>
-            <div className="w-10 h-10 rounded-xl bg-gradient-to-tr from-purple-600 via-violet-600 to-indigo-500 flex items-center justify-center text-white shadow-md shadow-purple-600/30 border border-purple-400/30">
-              <Plane size={20} className="transform -rotate-45" />
+          {/* Logo & Platform Name: Clean, perfectly aligned and zero clipping */}
+          <div className="flex items-center gap-3 cursor-pointer select-none" onClick={() => handleNavigate('home')}>
+            <div className="w-8 h-8 rounded-lg bg-white text-black flex items-center justify-center font-bold shadow-sm shrink-0">
+              <Plane size={18} className="transform -rotate-45" />
             </div>
-            <div className="text-left">
-              <span className="font-black text-lg tracking-tight text-white block leading-none">
+            <div className="flex flex-col text-left justify-center">
+              <span className="font-bold text-base tracking-tight text-white leading-tight">
                 AeroProb
               </span>
-              <span className="text-[10px] text-purple-400 font-semibold tracking-wider uppercase">
-                Aviation Delay Intelligence
+              <span className="text-[10px] text-zinc-400 font-medium tracking-wide uppercase leading-tight">
+                Flight Disruption Predictor
               </span>
             </div>
           </div>
 
-          {/* Nav Items */}
-          <nav className="hidden md:flex items-center gap-1.5">
+          {/* Navigation Bar Items (Removed clumsy landing page button) */}
+          <nav className="hidden md:flex items-center gap-1">
             {navItems.map(item => (
               <button
                 key={item.id}
                 onClick={() => handleNavigate(item.id)}
-                className={`px-3.5 py-2 rounded-xl flex items-center gap-2 text-xs font-semibold transition cursor-pointer ${
+                className={`px-3 py-1.5 rounded-lg flex items-center gap-2 text-xs font-medium transition cursor-pointer ${
                   currentPage === item.id 
-                    ? 'bg-purple-500/15 text-purple-300 border border-purple-500/35 shadow-sm shadow-purple-500/10' 
-                    : 'text-slate-400 hover:text-slate-200 hover:bg-slate-800/60'
+                    ? 'bg-zinc-800 text-white border border-zinc-700 shadow-sm' 
+                    : 'text-zinc-400 hover:text-zinc-200 hover:bg-zinc-900'
                 }`}
               >
-                <item.icon size={15} />
+                <item.icon size={14} className={currentPage === item.id ? 'text-white' : 'text-zinc-400'} />
                 <span>{item.label}</span>
               </button>
             ))}
           </nav>
 
-          {/* Right Action Widgets: Landing Page Shortcut, Faculty Demo Button & User Profile */}
-          <div className="flex items-center gap-2.5">
-            <button
-              onClick={() => {
-                setIsAuthenticated(false);
-                localStorage.removeItem('aero_auth');
-              }}
-              className="hidden lg:flex items-center gap-1.5 px-3 py-1.5 rounded-xl text-slate-400 hover:text-slate-200 hover:bg-slate-800/60 text-xs font-semibold transition cursor-pointer"
-              title="Return to the Cinematic Landing Page"
-            >
-              <span>Landing Page</span>
-            </button>
-
+          {/* Right Action Widgets: Faculty Demo Button & User Profile */}
+          <div className="flex items-center gap-3">
             <button
               onClick={launchFacultyDemo}
-              className="hidden sm:flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-gradient-to-r from-purple-950/60 to-violet-950/60 border border-purple-500/35 text-purple-300 text-xs font-bold hover:scale-105 transition shadow-sm cursor-pointer"
+              className="hidden sm:flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-zinc-900 border border-zinc-700 hover:border-zinc-500 text-zinc-200 hover:text-white text-xs font-semibold transition cursor-pointer shadow-sm"
               title="One-click Faculty Demo: loads Dr. Sharma profile and MAA to BOM flight search"
             >
-              <GraduationCap size={15} className="text-purple-400" />
+              <GraduationCap size={15} />
               <span>Faculty Demo</span>
             </button>
 
             {user?.name ? (
               <button
                 onClick={() => setIsProfileDrawerOpen(true)}
-                className="flex items-center gap-2 px-3 py-1.5 rounded-xl bg-[#0f0f18] border border-purple-500/20 hover:border-purple-500/40 transition cursor-pointer"
+                className="flex items-center gap-2 px-3 py-1.5 rounded-lg bg-zinc-900 border border-zinc-800 hover:border-zinc-700 transition cursor-pointer"
               >
-                <div className="w-6 h-6 rounded-full bg-gradient-to-tr from-purple-600 to-violet-600 flex items-center justify-center text-white text-xs font-bold">
+                <div className="w-6 h-6 rounded-md bg-white text-black flex items-center justify-center text-xs font-bold">
                   {user.name.charAt(0)}
                 </div>
-                <span className="text-xs font-semibold text-slate-200 hidden sm:inline">
+                <span className="text-xs font-medium text-zinc-200 hidden sm:inline">
                   {user.name}
                 </span>
               </button>
             ) : (
               <button
                 onClick={() => setIsAuthModalOpen(true)}
-                className="flex items-center gap-1.5 px-3.5 py-1.5 rounded-xl bg-purple-600 hover:bg-purple-500 text-white text-xs font-bold transition shadow-md shadow-purple-600/25 cursor-pointer"
+                className="flex items-center gap-1.5 px-3.5 py-1.5 rounded-lg bg-white text-black hover:bg-zinc-200 text-xs font-semibold transition shadow-sm cursor-pointer"
               >
                 <LogIn size={14} />
                 <span>Sign In</span>
@@ -287,19 +276,19 @@ function App() {
       </main>
 
       {/* Global Footer */}
-      <footer className="border-t border-purple-500/15 py-10 bg-[#050509] mt-12 text-left">
-        <div className="max-w-7xl mx-auto px-4 text-slate-400 text-xs flex flex-col md:flex-row justify-between items-center gap-4">
+      <footer className="border-t border-zinc-800/80 py-8 bg-[#09090b] mt-12 text-left">
+        <div className="max-w-7xl mx-auto px-6 text-zinc-500 text-xs flex flex-col md:flex-row justify-between items-center gap-4">
           <div>
-            <p className="font-bold text-slate-200 text-sm">
+            <p className="font-semibold text-zinc-300 text-sm">
               AeroProb • Flight Delay & Cancellation Probability Predictor
             </p>
-            <p className="mt-1 text-slate-400">
+            <p className="mt-1 text-zinc-400">
               Grounded in 538,000+ US BTS flight operations, DGCA India official monthly OTP benchmarks, and Open-Meteo live weather telemetry.
             </p>
           </div>
-          <div className="flex items-center gap-2 text-purple-400 bg-purple-500/10 px-3 py-1.5 rounded-full text-xs font-semibold border border-purple-500/20">
+          <div className="flex items-center gap-2 text-zinc-300 bg-zinc-900 px-3 py-1.5 rounded-lg text-xs font-medium border border-zinc-800">
             <Plane size={14} />
-            <span>Real-time Aviation Intelligence</span>
+            <span>Calibrated Aviation Intelligence</span>
           </div>
         </div>
       </footer>

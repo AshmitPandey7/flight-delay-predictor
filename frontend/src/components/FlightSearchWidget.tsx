@@ -187,10 +187,10 @@ export default function FlightSearchWidget({
 
   return (
     <div ref={containerRef} className="w-full relative text-left">
-      <div className="bg-slate-900/90 backdrop-blur-xl border border-slate-800 rounded-3xl shadow-2xl p-6 sm:p-8">
+      <div className="bg-[#0e0e18]/90 backdrop-blur-xl border border-purple-500/25 rounded-3xl shadow-2xl p-6 sm:p-8">
         
         {/* Top Controls: Trip Type Radio & Quick Notice */}
-        <div className="flex flex-wrap items-center justify-between gap-4 pb-6 border-b border-slate-800/80">
+        <div className="flex flex-wrap items-center justify-between gap-4 pb-6 border-b border-purple-500/15">
           <div className="flex items-center gap-6">
             <label className="flex items-center gap-2 cursor-pointer group">
               <input
@@ -198,7 +198,7 @@ export default function FlightSearchWidget({
                 name="tripType"
                 checked={tripType === 'one-way'}
                 onChange={() => setTripType('one-way')}
-                className="w-4 h-4 text-sky-500 focus:ring-sky-500 focus:ring-offset-slate-900"
+                className="w-4 h-4 text-purple-600 focus:ring-purple-500 focus:ring-offset-[#0e0e18]"
               />
               <span className={`text-sm font-semibold transition ${tripType === 'one-way' ? 'text-white' : 'text-slate-400 group-hover:text-slate-200'}`}>
                 One Way
@@ -211,7 +211,7 @@ export default function FlightSearchWidget({
                 name="tripType"
                 checked={tripType === 'round-trip'}
                 onChange={() => setTripType('round-trip')}
-                className="w-4 h-4 text-sky-500 focus:ring-sky-500 focus:ring-offset-slate-900"
+                className="w-4 h-4 text-purple-600 focus:ring-purple-500 focus:ring-offset-[#0e0e18]"
               />
               <span className={`text-sm font-semibold transition ${tripType === 'round-trip' ? 'text-white' : 'text-slate-400 group-hover:text-slate-200'}`}>
                 Round Trip
@@ -219,8 +219,8 @@ export default function FlightSearchWidget({
             </label>
           </div>
 
-          <div className="inline-flex items-center gap-2 text-xs font-medium text-sky-400 bg-sky-500/10 px-3 py-1 rounded-full border border-sky-500/20">
-            <Sparkles size={13} />
+          <div className="inline-flex items-center gap-2 text-xs font-semibold text-purple-300 bg-purple-500/10 px-3 py-1 rounded-full border border-purple-500/25">
+            <Sparkles size={13} className="text-purple-400" />
             <span>Real-time Delay Probability Engine Active</span>
           </div>
         </div>
@@ -234,14 +234,14 @@ export default function FlightSearchWidget({
               setActiveDropdown(activeDropdown === 'origin' ? null : 'origin');
               setSearchQuery('');
             }}
-            className="md:col-span-3 bg-slate-950/70 border border-slate-800 hover:border-sky-500/60 rounded-2xl p-4 cursor-pointer transition relative group"
+            className="md:col-span-3 bg-[#07070e] border border-purple-500/20 hover:border-purple-500/60 rounded-2xl p-4 cursor-pointer transition relative group"
           >
             <span className="text-xs font-medium text-slate-400 block mb-1">From</span>
             <div className="flex items-baseline gap-2">
-              <h2 className="text-2xl font-black text-slate-100 tracking-tight group-hover:text-sky-400 transition">
+              <h2 className="text-2xl font-black text-slate-100 tracking-tight group-hover:text-purple-300 transition">
                 {origin.city}
               </h2>
-              <span className="text-xs font-bold text-sky-400 bg-sky-500/10 px-2 py-0.5 rounded border border-sky-500/20">
+              <span className="text-xs font-bold text-purple-400 bg-purple-500/10 px-2 py-0.5 rounded border border-purple-500/25">
                 {origin.iata}
               </span>
             </div>
@@ -254,7 +254,7 @@ export default function FlightSearchWidget({
           <button
             type="button"
             onClick={handleSwap}
-            className="hidden md:flex absolute left-[24.2%] top-1/2 -translate-y-1/2 -translate-x-1/2 z-20 w-9 h-9 rounded-full bg-slate-800 hover:bg-sky-500 border border-slate-700 text-slate-300 hover:text-white items-center justify-center shadow-lg transition transform hover:rotate-180 duration-300 cursor-pointer"
+            className="hidden md:flex absolute left-[24.2%] top-1/2 -translate-y-1/2 -translate-x-1/2 z-20 w-9 h-9 rounded-full bg-[#161626] hover:bg-purple-600 border border-purple-500/30 text-slate-300 hover:text-white items-center justify-center shadow-lg shadow-purple-950/40 transition transform hover:rotate-180 duration-300 cursor-pointer"
             title="Swap Origin and Destination"
           >
             <ArrowLeftRight size={15} />
@@ -266,14 +266,14 @@ export default function FlightSearchWidget({
               setActiveDropdown(activeDropdown === 'destination' ? null : 'destination');
               setSearchQuery('');
             }}
-            className="md:col-span-3 bg-slate-950/70 border border-slate-800 hover:border-sky-500/60 rounded-2xl p-4 cursor-pointer transition relative group"
+            className="md:col-span-3 bg-[#07070e] border border-purple-500/20 hover:border-purple-500/60 rounded-2xl p-4 cursor-pointer transition relative group"
           >
             <span className="text-xs font-medium text-slate-400 block mb-1">To</span>
             <div className="flex items-baseline gap-2">
-              <h2 className="text-2xl font-black text-slate-100 tracking-tight group-hover:text-sky-400 transition">
+              <h2 className="text-2xl font-black text-slate-100 tracking-tight group-hover:text-purple-300 transition">
                 {destination.city}
               </h2>
-              <span className="text-xs font-bold text-sky-400 bg-sky-500/10 px-2 py-0.5 rounded border border-sky-500/20">
+              <span className="text-xs font-bold text-purple-400 bg-purple-500/10 px-2 py-0.5 rounded border border-purple-500/25">
                 {destination.iata}
               </span>
             </div>
@@ -283,7 +283,7 @@ export default function FlightSearchWidget({
           </div>
 
           {/* DEPARTURE CARD (2 Cols) */}
-          <div className="md:col-span-2 bg-slate-950/70 border border-slate-800 hover:border-sky-500/60 rounded-2xl p-4 transition relative">
+          <div className="md:col-span-2 bg-[#07070e] border border-purple-500/20 hover:border-purple-500/60 rounded-2xl p-4 transition relative">
             <span className="text-xs font-medium text-slate-400 block mb-1">Departure</span>
             <label className="cursor-pointer block">
               <div className="flex items-baseline gap-1.5">
@@ -302,8 +302,8 @@ export default function FlightSearchWidget({
           </div>
 
           {/* RETURN CARD (2 Cols) */}
-          <div className={`md:col-span-2 bg-slate-950/70 border rounded-2xl p-4 transition relative ${
-            tripType === 'round-trip' ? 'border-slate-800 hover:border-sky-500/60 cursor-pointer' : 'border-slate-900/50 opacity-50'
+          <div className={`md:col-span-2 bg-[#07070e] border rounded-2xl p-4 transition relative ${
+            tripType === 'round-trip' ? 'border-purple-500/20 hover:border-purple-500/60 cursor-pointer' : 'border-purple-900/15 opacity-40'
           }`}>
             <span className="text-xs font-medium text-slate-400 block mb-1">Return</span>
             {tripType === 'round-trip' ? (
@@ -325,9 +325,9 @@ export default function FlightSearchWidget({
               <button
                 type="button"
                 onClick={() => setTripType('round-trip')}
-                className="text-xs text-slate-400 hover:text-sky-400 font-medium py-3 block text-left"
+                className="text-xs text-slate-400 hover:text-purple-400 font-medium py-3 block text-left cursor-pointer"
               >
-                + Add return flight for round trip
+                + Add return flight
               </button>
             )}
           </div>
@@ -335,21 +335,21 @@ export default function FlightSearchWidget({
           {/* TRAVELLERS & CLASS CARD (2 Cols) */}
           <div
             onClick={() => setActiveDropdown(activeDropdown === 'travellers' ? null : 'travellers')}
-            className="md:col-span-2 bg-slate-950/70 border border-slate-800 hover:border-sky-500/60 rounded-2xl p-4 cursor-pointer transition relative group"
+            className="md:col-span-2 bg-[#07070e] border border-purple-500/20 hover:border-purple-500/60 rounded-2xl p-4 cursor-pointer transition relative group"
           >
             <span className="text-xs font-medium text-slate-400 block mb-1">Travellers & Class</span>
             <div className="flex items-baseline gap-1">
               <span className="text-2xl font-black text-slate-100">{adults + children + infants}</span>
               <span className="text-xs font-bold text-slate-300">Traveller(s)</span>
             </div>
-            <p className="text-xs text-sky-400 font-medium truncate mt-1">
+            <p className="text-xs text-purple-400 font-semibold truncate mt-1">
               {cabinClass}
             </p>
           </div>
 
           {/* DROPDOWN POPOVER FOR ORIGIN / DESTINATION */}
           {(activeDropdown === 'origin' || activeDropdown === 'destination') && (
-            <div className="absolute top-full left-0 z-50 mt-2 w-full max-w-md bg-slate-900 border border-slate-700 rounded-2xl shadow-2xl p-4 animate-in fade-in zoom-in-95 duration-150">
+            <div className="absolute top-full left-0 z-50 mt-2 w-full max-w-md bg-[#0e0e18] border border-purple-500/35 rounded-2xl shadow-2xl p-4 animate-in fade-in zoom-in-95 duration-150">
               <div className="relative mb-3">
                 <Search size={16} className="absolute left-3 top-3 text-slate-500" />
                 <input
@@ -358,7 +358,7 @@ export default function FlightSearchWidget({
                   value={searchQuery}
                   onChange={(e) => setSearchQuery(e.target.value)}
                   placeholder="Search city, airport name, or IATA (e.g. Chennai, MAA, BOM)..."
-                  className="w-full bg-slate-950 border border-slate-800 rounded-xl pl-9 pr-3 py-2 text-sm text-slate-100 placeholder:text-slate-600 focus:outline-none focus:border-sky-500"
+                  className="w-full bg-[#07070e] border border-purple-500/20 rounded-xl pl-9 pr-3 py-2 text-sm text-slate-100 placeholder:text-slate-600 focus:outline-none focus:border-purple-500 transition"
                 />
               </div>
 
@@ -367,7 +367,7 @@ export default function FlightSearchWidget({
                   <div
                     key={a.iata}
                     onClick={() => handleSelectAirport(a)}
-                    className="p-2.5 rounded-xl hover:bg-slate-800/80 cursor-pointer transition flex items-center justify-between text-left"
+                    className="p-2.5 rounded-xl hover:bg-purple-950/40 cursor-pointer transition flex items-center justify-between text-left"
                   >
                     <div>
                       <div className="flex items-center gap-2">
@@ -376,7 +376,7 @@ export default function FlightSearchWidget({
                       </div>
                       <p className="text-xs text-slate-400 truncate max-w-xs">{a.name}</p>
                     </div>
-                    <span className="text-xs font-bold text-sky-400 bg-sky-500/10 px-2 py-1 rounded border border-sky-500/20">
+                    <span className="text-xs font-bold text-purple-400 bg-purple-500/10 px-2 py-1 rounded border border-purple-500/25">
                       {a.iata}
                     </span>
                   </div>
@@ -387,8 +387,8 @@ export default function FlightSearchWidget({
 
           {/* DROPDOWN POPOVER FOR TRAVELLERS & CLASS */}
           {activeDropdown === 'travellers' && (
-            <div className="absolute top-full right-0 z-50 mt-2 w-80 bg-slate-900 border border-slate-700 rounded-2xl shadow-2xl p-5 animate-in fade-in zoom-in-95 duration-150 space-y-4">
-              <h4 className="text-sm font-bold text-slate-100 border-b border-slate-800 pb-2">
+            <div className="absolute top-full right-0 z-50 mt-2 w-80 bg-[#0e0e18] border border-purple-500/35 rounded-2xl shadow-2xl p-5 animate-in fade-in zoom-in-95 duration-150 space-y-4">
+              <h4 className="text-sm font-bold text-slate-100 border-b border-purple-500/15 pb-2">
                 Select Travellers & Cabin
               </h4>
 
@@ -402,7 +402,7 @@ export default function FlightSearchWidget({
                   <button
                     type="button"
                     onClick={() => setAdults(Math.max(1, adults - 1))}
-                    className="w-7 h-7 rounded bg-slate-800 text-slate-300 font-bold hover:bg-slate-700"
+                    className="w-7 h-7 rounded bg-[#161626] text-slate-300 font-bold hover:bg-purple-900/50 cursor-pointer"
                   >
                     -
                   </button>
@@ -410,7 +410,7 @@ export default function FlightSearchWidget({
                   <button
                     type="button"
                     onClick={() => setAdults(Math.min(9, adults + 1))}
-                    className="w-7 h-7 rounded bg-slate-800 text-slate-300 font-bold hover:bg-slate-700"
+                    className="w-7 h-7 rounded bg-[#161626] text-slate-300 font-bold hover:bg-purple-900/50 cursor-pointer"
                   >
                     +
                   </button>
@@ -427,7 +427,7 @@ export default function FlightSearchWidget({
                   <button
                     type="button"
                     onClick={() => setChildren(Math.max(0, children - 1))}
-                    className="w-7 h-7 rounded bg-slate-800 text-slate-300 font-bold hover:bg-slate-700"
+                    className="w-7 h-7 rounded bg-[#161626] text-slate-300 font-bold hover:bg-purple-900/50 cursor-pointer"
                   >
                     -
                   </button>
@@ -435,7 +435,7 @@ export default function FlightSearchWidget({
                   <button
                     type="button"
                     onClick={() => setChildren(Math.min(6, children + 1))}
-                    className="w-7 h-7 rounded bg-slate-800 text-slate-300 font-bold hover:bg-slate-700"
+                    className="w-7 h-7 rounded bg-[#161626] text-slate-300 font-bold hover:bg-purple-900/50 cursor-pointer"
                   >
                     +
                   </button>
@@ -452,7 +452,7 @@ export default function FlightSearchWidget({
                   <button
                     type="button"
                     onClick={() => setInfants(Math.max(0, infants - 1))}
-                    className="w-7 h-7 rounded bg-slate-800 text-slate-300 font-bold hover:bg-slate-700"
+                    className="w-7 h-7 rounded bg-[#161626] text-slate-300 font-bold hover:bg-purple-900/50 cursor-pointer"
                   >
                     -
                   </button>
@@ -460,7 +460,7 @@ export default function FlightSearchWidget({
                   <button
                     type="button"
                     onClick={() => setInfants(Math.min(4, infants + 1))}
-                    className="w-7 h-7 rounded bg-slate-800 text-slate-300 font-bold hover:bg-slate-700"
+                    className="w-7 h-7 rounded bg-[#161626] text-slate-300 font-bold hover:bg-purple-900/50 cursor-pointer"
                   >
                     +
                   </button>
@@ -468,7 +468,7 @@ export default function FlightSearchWidget({
               </div>
 
               {/* Cabin Class */}
-              <div className="pt-2 border-t border-slate-800">
+              <div className="pt-2 border-t border-purple-500/15">
                 <label className="block text-xs font-semibold text-slate-300 mb-2">Cabin Class</label>
                 <div className="grid grid-cols-2 gap-2 text-xs">
                   {['Economy', 'Premium Economy', 'Business', 'First'].map((cls) => (
@@ -476,10 +476,10 @@ export default function FlightSearchWidget({
                       key={cls}
                       type="button"
                       onClick={() => setCabinClass(cls)}
-                      className={`p-2 rounded-lg font-medium border text-center transition ${
+                      className={`p-2 rounded-xl font-medium border text-center transition cursor-pointer ${
                         cabinClass === cls
-                          ? 'bg-sky-500/20 border-sky-500 text-sky-400 font-semibold'
-                          : 'border-slate-800 text-slate-400 hover:bg-slate-800/60'
+                          ? 'bg-purple-500/20 border-purple-500 text-purple-300 font-semibold'
+                          : 'border-purple-500/15 text-slate-400 hover:bg-purple-950/30'
                       }`}
                     >
                       {cls}
@@ -491,7 +491,7 @@ export default function FlightSearchWidget({
               <button
                 type="button"
                 onClick={() => setActiveDropdown(null)}
-                className="w-full py-2 bg-sky-500 hover:bg-sky-400 text-white rounded-xl text-xs font-bold transition cursor-pointer"
+                className="w-full py-2 bg-gradient-to-r from-purple-600 to-violet-600 hover:from-purple-500 hover:to-violet-500 text-white rounded-xl text-xs font-bold transition cursor-pointer"
               >
                 Apply Selection
               </button>
@@ -500,7 +500,7 @@ export default function FlightSearchWidget({
         </div>
 
         {/* Special Fare Selectors (MakeMyTrip Style) */}
-        <div className="mt-6 pt-5 border-t border-slate-800/80 flex flex-wrap items-center gap-3">
+        <div className="mt-6 pt-5 border-t border-purple-500/15 flex flex-wrap items-center gap-3">
           <span className="text-xs font-semibold text-slate-400">Special Fares:</span>
           {[
             { id: 'regular', label: 'Regular Fares', badge: '' },
@@ -514,13 +514,13 @@ export default function FlightSearchWidget({
               onClick={() => setSpecialFare(fare.id)}
               className={`px-3.5 py-1.5 rounded-full text-xs font-medium border transition flex items-center gap-1.5 cursor-pointer ${
                 specialFare === fare.id
-                  ? 'bg-sky-500/20 border-sky-500 text-sky-400 font-semibold'
-                  : 'border-slate-800 text-slate-400 hover:border-slate-700 hover:text-slate-200'
+                  ? 'bg-purple-500/20 border-purple-500 text-purple-300 font-semibold'
+                  : 'border-purple-500/15 text-slate-400 hover:border-purple-500/40 hover:text-slate-200'
               }`}
             >
               <span>{fare.label}</span>
               {fare.badge && (
-                <span className="text-[10px] px-1.5 py-0.2 rounded bg-emerald-500/10 text-emerald-400 border border-emerald-500/20">
+                <span className="text-[10px] px-1.5 py-0.2 rounded bg-emerald-500/10 text-emerald-400 border border-emerald-500/20 font-bold">
                   {fare.badge}
                 </span>
               )}
@@ -532,7 +532,7 @@ export default function FlightSearchWidget({
         <div className="mt-8 flex justify-center">
           <button
             onClick={handleSearchSubmit}
-            className="group relative inline-flex items-center justify-center gap-3 px-12 py-4 text-base font-bold text-white bg-gradient-to-r from-sky-500 via-blue-600 to-indigo-600 rounded-full overflow-hidden transition-all hover:scale-105 shadow-[0_0_40px_-8px_rgba(14,165,233,0.6)] cursor-pointer"
+            className="group relative inline-flex items-center justify-center gap-3 px-12 py-4 text-base font-bold text-white bg-gradient-to-r from-purple-600 via-violet-600 to-indigo-600 rounded-full overflow-hidden transition-all hover:scale-105 shadow-[0_0_40px_-8px_rgba(147,51,234,0.6)] cursor-pointer"
           >
             <Search className="w-5 h-5 transition-transform group-hover:scale-110" />
             <span className="tracking-wide">SEARCH FLIGHTS WITH PROBABILITIES</span>

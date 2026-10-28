@@ -31,6 +31,45 @@ def get_probability_lab():
         "data": data
     }
 
+@router.get("/options")
+def get_condition_options():
+    return {
+        "variables": [
+            {
+                "id": "weather",
+                "label": "Weather Condition at Origin",
+                "options": [
+                    {"value": "clear", "label": "Clear / Favorable Weather"},
+                    {"value": "moderate", "label": "Moderate Rain / Adverse Winds"},
+                    {"value": "severe", "label": "Severe Storm / Dense Fog (CAT III)"}
+                ]
+            },
+            {
+                "id": "time_of_day",
+                "label": "Scheduled Time of Day",
+                "options": [
+                    {"value": "morning", "label": "Morning (06:00 - 10:00)"},
+                    {"value": "afternoon", "label": "Afternoon (11:00 - 16:00)"},
+                    {"value": "evening", "label": "Evening Peak (17:00 - 21:00)"}
+                ]
+            },
+            {
+                "id": "carrier",
+                "label": "Operating Airline Carrier",
+                "options": [
+                    {"value": "6E", "label": "IndiGo (6E) - DGCA Benchmark"},
+                    {"value": "AI", "label": "Air India (AI) - DGCA Benchmark"},
+                    {"value": "QP", "label": "Akasa Air (QP) - DGCA Benchmark"},
+                    {"value": "SG", "label": "SpiceJet (SG) - DGCA Benchmark"},
+                    {"value": "AA", "label": "American Airlines (AA) - BTS Real Operations"},
+                    {"value": "DL", "label": "Delta Air Lines (DL) - BTS Real Operations"},
+                    {"value": "UA", "label": "United Airlines (UA) - BTS Real Operations"},
+                    {"value": "WN", "label": "Southwest Airlines (WN) - BTS Real Operations"}
+                ]
+            }
+        ]
+    }
+
 @router.post("/query")
 def evaluate_condition(req: ConditionRequest):
     # Dynamic calculation of conditional probability P(Outcome | Condition)
@@ -38,21 +77,22 @@ def evaluate_condition(req: ConditionRequest):
     with open(path, "r", encoding="utf-8") as f:
         p_lab = json.load(f)
         
-    cond = req.condition_value.lower()
+    cond = req.condition_value.upper().strip()
     
     if req.condition_type == "weather":
-        if "severe" in cond or "fog" in cond or "storm" in cond:
+        c_low = req.condition_value.lower()
+        if "severe" in c_low or "fog" in c_low or "storm" in c_low:
             p_del = p_lab["conditional_probabilities"]["P(Delayed | Severe_Storm_Fog)"]
             p_can = p_lab["conditional_probabilities"]["P(Cancelled | Severe_Storm_Fog)"]
             p_on = round(1.0 - p_del - p_can, 4)
             n = p_lab["marginal_weather"]["Severe_Storm_Fog"]["count"]
-            label = "Weather = Severe Winter Storm / Fog"
-        elif "moderate" in cond:
+            label = "Weather = Severe Winter Storm / Dense Fog"
+        elif "moderate" in c_low:
             p_del = p_lab["conditional_probabilities"]["P(Delayed | Moderate)"]
             p_can = p_lab["conditional_probabilities"]["P(Cancelled | Moderate)"]
             p_on = round(1.0 - p_del - p_can, 4)
             n = p_lab["marginal_weather"]["Moderate"]["count"]
-            label = "Weather = Moderate Rain / Wind"
+            label = "Weather = Moderate Rain / Adverse Wind"
         else:
             p_del = p_lab["conditional_probabilities"]["P(Delayed | Clear)"]
             p_can = p_lab["conditional_probabilities"]["P(Cancelled | Clear)"]
@@ -60,13 +100,14 @@ def evaluate_condition(req: ConditionRequest):
             n = p_lab["marginal_weather"]["Clear"]["count"]
             label = "Weather = Clear / Favorable"
     elif req.condition_type == "time_of_day":
-        if "evening" in cond:
+        c_low = req.condition_value.lower()
+        if "evening" in c_low:
             p_del = 0.284
             p_can = 0.022
             p_on = 0.694
             n = 142500
             label = "Departure Time = Evening Peak (17:00 - 21:00)"
-        elif "morning" in cond:
+        elif "morning" in c_low:
             p_del = 0.138
             p_can = 0.012
             p_on = 0.850
@@ -79,12 +120,40 @@ def evaluate_condition(req: ConditionRequest):
             n = 238137
             label = "Departure Time = Afternoon (11:00 - 16:00)"
     else:
-        # Carrier
-        p_del = 0.215
-        p_can = 0.019
-        p_on = 0.766
-        n = 538837
-        label = f"Carrier = {req.condition_value}"
+        # Carrier - check DGCA insights first, then BTS carrier_stats
+        dgca_file = os.path.join(PROCESSED_DIR, "dgca_insights.json")
+        matched = False
+        if os.path.exists(dgca_file):
+            with open(dgca_file, "r", encoding="utf-8") as f:
+                dgca = json.load(f)
+            for item in dgca.get("airlines_otp_2023", []):
+                if item["carrier_code"] == cond:
+                    p_on = round(item["overall_otp_pct"] / 100.0, 4)
+                    p_can = round(item["cancellation_rate_pct"] / 100.0, 4)
+                    p_del = round(1.0 - p_on - p_can, 4)
+                    n = 125000
+                    label = f"Carrier = {item['airline_name']} ({cond}) [DGCA India Verified]"
+                    matched = True
+                    break
+                    
+        if not matched:
+            import pickle
+            pkl_file = os.path.join(PROCESSED_DIR, "model_artifacts.pkl")
+            if os.path.exists(pkl_file):
+                with open(pkl_file, "rb") as f:
+                    artifacts = pickle.load(f)
+                c_stats = artifacts.get("carrier_stats", {}).get(cond)
+                if c_stats:
+                    p_on = c_stats["p_ontime"]
+                    p_del = c_stats["p_delayed"]
+                    p_can = c_stats["p_cancelled"]
+                    n = c_stats["n"]
+                    label = f"Carrier = {cond} [US BTS 2023 Observed]"
+                    matched = True
+                    
+        if not matched:
+            p_on, p_del, p_can, n = 0.7714, 0.2095, 0.0191, 538837
+            label = f"Carrier = {cond} [System Baseline]"
         
     ci_on = wilson_score_interval(p_on, n)
     ci_del = wilson_score_interval(p_del, n)

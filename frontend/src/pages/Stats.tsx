@@ -29,7 +29,7 @@ export default function Stats() {
   if (loading) {
     return (
       <div className="py-24 text-center text-slate-400">
-        <div className="inline-block animate-spin rounded-full h-8 w-8 border-4 border-sky-500 border-t-transparent mb-3"></div>
+        <div className="inline-block animate-spin rounded-full h-8 w-8 border-4 border-purple-500 border-t-transparent mb-3"></div>
         <p className="text-sm">Loading verified statistical evaluations and hypothesis suite...</p>
       </div>
     );
@@ -49,24 +49,24 @@ export default function Stats() {
       {/* Header */}
       <div className="mb-8">
         <div className="flex items-center gap-3 mb-2">
-          <div className="p-2.5 bg-purple-500/10 text-purple-400 rounded-xl border border-purple-500/20">
+          <div className="p-2.5 bg-purple-500/15 text-purple-300 rounded-2xl border border-purple-500/30">
             <BarChart3 size={24} />
           </div>
           <div>
             <h1 className="text-3xl font-black text-slate-100">Statistical Insights & Model Audit</h1>
-            <p className="text-xs text-slate-400 mt-0.5">
+            <p className="text-xs text-purple-400 font-semibold mt-0.5">
               Strictly leakage-free forward validation on 123,254 holdout records (BTS 2023)
             </p>
           </div>
         </div>
 
         {/* Tab Strip */}
-        <div className="flex border-b border-slate-800 gap-6 mt-6 text-sm font-semibold">
+        <div className="flex border-b border-purple-500/15 gap-6 mt-6 text-sm font-semibold">
           <button
             onClick={() => setActiveTab('model')}
             className={`pb-3 border-b-2 transition flex items-center gap-2 cursor-pointer ${
               activeTab === 'model'
-                ? 'border-sky-500 text-sky-400 font-bold'
+                ? 'border-purple-500 text-purple-300 font-bold'
                 : 'border-transparent text-slate-400 hover:text-slate-200'
             }`}
           >
@@ -78,7 +78,7 @@ export default function Stats() {
             onClick={() => setActiveTab('tests')}
             className={`pb-3 border-b-2 transition flex items-center gap-2 cursor-pointer ${
               activeTab === 'tests'
-                ? 'border-sky-500 text-sky-400 font-bold'
+                ? 'border-purple-500 text-purple-300 font-bold'
                 : 'border-transparent text-slate-400 hover:text-slate-200'
             }`}
           >
@@ -90,7 +90,7 @@ export default function Stats() {
             onClick={() => setActiveTab('concepts')}
             className={`pb-3 border-b-2 transition flex items-center gap-2 cursor-pointer ${
               activeTab === 'concepts'
-                ? 'border-sky-500 text-sky-400 font-bold'
+                ? 'border-purple-500 text-purple-300 font-bold'
                 : 'border-transparent text-slate-400 hover:text-slate-200'
             }`}
           >
@@ -105,7 +105,7 @@ export default function Stats() {
         <div className="space-y-8">
           
           {/* Audit Verification Banner */}
-          <div className="p-4 rounded-2xl bg-emerald-500/10 border border-emerald-500/20 flex items-center justify-between">
+          <div className="p-4 rounded-2xl bg-emerald-500/10 border border-emerald-500/25 flex items-center justify-between">
             <div className="flex items-center gap-3">
               <CheckCircle2 className="text-emerald-400 shrink-0" size={20} />
               <div>
@@ -126,29 +126,29 @@ export default function Stats() {
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
             
             {/* Calibrated Logistic Regression */}
-            <div className="p-6 rounded-3xl bg-slate-900 border border-sky-500/30 shadow-lg relative overflow-hidden">
+            <div className="p-6 rounded-3xl bg-[#0e0e18] border border-purple-500/35 shadow-lg relative overflow-hidden">
               <div className="flex items-center justify-between mb-4">
                 <div>
-                  <span className="text-xs font-bold text-sky-400 uppercase tracking-wider">Primary Model</span>
+                  <span className="text-xs font-bold text-purple-400 uppercase tracking-wider">Primary Model</span>
                   <h3 className="text-lg font-bold text-slate-100">Calibrated Multinomial Logistic Regression</h3>
                 </div>
-                <span className="text-xs px-2.5 py-1 rounded-full bg-sky-500/10 text-sky-400 border border-sky-500/20 font-bold">
+                <span className="text-xs px-2.5 py-1 rounded-full bg-purple-500/15 text-purple-300 border border-purple-500/30 font-bold">
                   Platt Scaled
                 </span>
               </div>
 
               <div className="grid grid-cols-3 gap-3 mb-6">
-                <div className="p-3 bg-slate-950 rounded-xl border border-slate-800 text-center">
+                <div className="p-3 bg-[#07070e] rounded-xl border border-purple-500/20 text-center">
                   <span className="text-[11px] text-slate-400 block mb-1">Accuracy</span>
                   <span className="text-xl font-black text-slate-100">{(lr?.accuracy * 100).toFixed(1)}%</span>
                 </div>
-                <div className="p-3 bg-slate-950 rounded-xl border border-slate-800 text-center">
+                <div className="p-3 bg-[#07070e] rounded-xl border border-purple-500/20 text-center">
                   <span className="text-[11px] text-slate-400 block mb-1">Log-Loss</span>
                   <span className="text-xl font-black text-emerald-400">{lr?.log_loss?.toFixed(4)}</span>
                 </div>
-                <div className="p-3 bg-slate-950 rounded-xl border border-slate-800 text-center">
+                <div className="p-3 bg-[#07070e] rounded-xl border border-purple-500/20 text-center">
                   <span className="text-[11px] text-slate-400 block mb-1">Brier Score</span>
-                  <span className="text-xl font-black text-indigo-400">{lr?.brier_score?.toFixed(4)}</span>
+                  <span className="text-xl font-black text-purple-300">{lr?.brier_score?.toFixed(4)}</span>
                 </div>
               </div>
 
@@ -158,7 +158,7 @@ export default function Stats() {
             </div>
 
             {/* Gaussian Naive Bayes */}
-            <div className="p-6 rounded-3xl bg-slate-900 border border-slate-800 shadow-sm relative overflow-hidden">
+            <div className="p-6 rounded-3xl bg-[#0e0e18] border border-purple-500/15 shadow-sm relative overflow-hidden">
               <div className="flex items-center justify-between mb-4">
                 <div>
                   <span className="text-xs font-bold text-slate-400 uppercase tracking-wider">Baseline Model</span>
@@ -170,15 +170,15 @@ export default function Stats() {
               </div>
 
               <div className="grid grid-cols-3 gap-3 mb-6">
-                <div className="p-3 bg-slate-950 rounded-xl border border-slate-800 text-center">
+                <div className="p-3 bg-[#07070e] rounded-xl border border-purple-500/20 text-center">
                   <span className="text-[11px] text-slate-400 block mb-1">Accuracy</span>
                   <span className="text-xl font-black text-slate-100">{(nb?.accuracy * 100).toFixed(1)}%</span>
                 </div>
-                <div className="p-3 bg-slate-950 rounded-xl border border-slate-800 text-center">
+                <div className="p-3 bg-[#07070e] rounded-xl border border-purple-500/20 text-center">
                   <span className="text-[11px] text-slate-400 block mb-1">Log-Loss</span>
                   <span className="text-xl font-black text-amber-400">{nb?.log_loss?.toFixed(4)}</span>
                 </div>
-                <div className="p-3 bg-slate-950 rounded-xl border border-slate-800 text-center">
+                <div className="p-3 bg-[#07070e] rounded-xl border border-purple-500/20 text-center">
                   <span className="text-[11px] text-slate-400 block mb-1">Brier Score</span>
                   <span className="text-xl font-black text-slate-300">{nb?.brier_score?.toFixed(4)}</span>
                 </div>
@@ -192,11 +192,11 @@ export default function Stats() {
           </div>
 
           {/* Per-Class Evaluation Metrics Table */}
-          <div className="p-6 rounded-3xl bg-slate-900 border border-slate-800 space-y-4">
+          <div className="p-6 rounded-3xl bg-[#0e0e18] border border-purple-500/20 space-y-4">
             <h3 className="text-base font-bold text-slate-100">Per-Outcome Class Performance Report</h3>
             <div className="overflow-x-auto">
               <table className="w-full text-xs text-left">
-                <thead className="text-slate-400 border-b border-slate-800 uppercase tracking-wider">
+                <thead className="text-slate-400 border-b border-purple-500/15 uppercase tracking-wider">
                   <tr>
                     <th className="py-3 px-4">Flight Outcome</th>
                     <th className="py-3 px-4">Precision</th>
@@ -205,13 +205,13 @@ export default function Stats() {
                     <th className="py-3 px-4">Holdout Support (n)</th>
                   </tr>
                 </thead>
-                <tbody className="divide-y divide-slate-800/80">
+                <tbody className="divide-y divide-purple-500/10">
                   {perClass && Object.entries(perClass).map(([cName, row]: [string, any]) => (
-                    <tr key={cName} className="hover:bg-slate-800/40 transition">
+                    <tr key={cName} className="hover:bg-purple-950/20 transition">
                       <td className="py-3.5 px-4 font-bold text-slate-200">{cName}</td>
                       <td className="py-3.5 px-4 font-mono text-emerald-400">{(row.precision * 100).toFixed(1)}%</td>
-                      <td className="py-3.5 px-4 font-mono text-sky-400">{(row.recall * 100).toFixed(1)}%</td>
-                      <td className="py-3.5 px-4 font-mono text-indigo-400">{(row.f1 * 100).toFixed(1)}%</td>
+                      <td className="py-3.5 px-4 font-mono text-purple-300">{(row.recall * 100).toFixed(1)}%</td>
+                      <td className="py-3.5 px-4 font-mono text-violet-300">{(row.f1 * 100).toFixed(1)}%</td>
                       <td className="py-3.5 px-4 font-mono text-slate-400">{row.support?.toLocaleString()}</td>
                     </tr>
                   ))}
@@ -225,7 +225,7 @@ export default function Stats() {
 
           {/* Probability Calibration Curve (Reliability Table) */}
           {lr?.calibration_curve && lr.calibration_curve.length > 0 && (
-            <div className="p-6 rounded-3xl bg-slate-900 border border-slate-800 space-y-4">
+            <div className="p-6 rounded-3xl bg-[#0e0e18] border border-purple-500/20 space-y-4">
               <div className="flex items-center justify-between">
                 <div>
                   <h3 className="text-base font-bold text-slate-100">Probability Calibration Reliability Diagram</h3>
@@ -233,27 +233,27 @@ export default function Stats() {
                     Comparing mean predicted probability against empirical positive proportion (Platt Scaling)
                   </p>
                 </div>
-                <span className="text-xs px-2.5 py-1 rounded bg-sky-500/10 text-sky-400 border border-sky-500/20 font-bold">
-                  Brier: {lr.brier_score}
+                <span className="text-xs px-2.5 py-1 rounded bg-purple-500/15 text-purple-300 border border-purple-500/30 font-bold">
+                  Brier Score: {lr.brier_score}
                 </span>
               </div>
 
               <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 pt-2">
                 {lr.calibration_curve.map((pt: any, i: number) => (
-                  <div key={i} className="p-4 rounded-2xl bg-slate-950 border border-slate-800">
-                    <span className="text-xs text-slate-400 block mb-1">Probability Decile {pt.pred_bin}</span>
+                  <div key={i} className="p-4 rounded-2xl bg-[#07070e] border border-purple-500/20">
+                    <span className="text-xs text-slate-400 block mb-1">Decile Bin {pt.pred_bin}</span>
                     <div className="flex justify-between items-baseline mb-2">
                       <span className="text-xs text-slate-300">Predicted:</span>
-                      <span className="text-sm font-bold text-sky-400">{(pt.mean_pred * 100).toFixed(1)}%</span>
+                      <span className="text-sm font-bold text-purple-300">{(pt.mean_pred * 100).toFixed(1)}%</span>
                     </div>
                     <div className="flex justify-between items-baseline mb-3">
                       <span className="text-xs text-slate-300">Empirical Reality:</span>
                       <span className="text-sm font-bold text-emerald-400">{(pt.empirical_prob * 100).toFixed(1)}%</span>
                     </div>
-                    <div className="w-full bg-slate-800 h-1.5 rounded-full overflow-hidden flex">
+                    <div className="w-full bg-slate-900 h-1.5 rounded-full overflow-hidden flex border border-purple-500/10">
                       <div
                         style={{ width: `${pt.mean_pred * 100}%` }}
-                        className="bg-sky-500 h-full"
+                        className="bg-purple-500 h-full"
                       ></div>
                     </div>
                     <span className="text-[10px] text-slate-500 block mt-2 text-right">
@@ -267,7 +267,7 @@ export default function Stats() {
 
           {/* Feature Coefficients / Odds Ratios */}
           {lr?.coefficients && (
-            <div className="p-6 rounded-3xl bg-slate-900 border border-slate-800 space-y-4">
+            <div className="p-6 rounded-3xl bg-[#0e0e18] border border-purple-500/20 space-y-4">
               <h3 className="text-base font-bold text-slate-100">Logistic Regression Feature Coefficients</h3>
               <p className="text-xs text-slate-400">
                 Log-odds multipliers indicating how scheduled timing and network features influence flight delay probabilities
@@ -275,7 +275,7 @@ export default function Stats() {
 
               <div className="grid grid-cols-1 md:grid-cols-2 gap-4 pt-2">
                 {Object.entries(lr.coefficients['Delayed'] || {}).map(([feat, weight]: [string, any]) => (
-                  <div key={feat} className="p-3.5 bg-slate-950 border border-slate-800 rounded-xl flex items-center justify-between">
+                  <div key={feat} className="p-3.5 bg-[#07070e] border border-purple-500/20 rounded-xl flex items-center justify-between">
                     <div>
                       <span className="text-xs font-bold text-slate-200 capitalize">
                         {feat.replace(/_/g, ' ')}
@@ -299,19 +299,19 @@ export default function Stats() {
       {/* TAB 2: HYPOTHESIS TESTS */}
       {activeTab === 'tests' && hypoData && (
         <div className="space-y-6">
-          <div className="p-4 rounded-2xl bg-slate-900 border border-slate-800 flex items-center justify-between text-xs text-slate-400">
+          <div className="p-4 rounded-2xl bg-[#0e0e18] border border-purple-500/20 flex items-center justify-between text-xs text-slate-400">
             <span>Testing Framework: Classical Frequentist Inference at Significance Threshold α = 0.05</span>
-            <span className="font-bold text-slate-200">5 Formal Tests Conducted</span>
+            <span className="font-bold text-purple-300">5 Formal Tests Conducted</span>
           </div>
 
           {Object.entries(hypoData.tests || {}).map(([key, test]: [string, any]) => (
-            <div key={key} className="p-6 rounded-3xl bg-slate-900 border border-slate-800 shadow-sm space-y-4">
+            <div key={key} className="p-6 rounded-3xl bg-[#0e0e18] border border-purple-500/20 shadow-sm space-y-4">
               <div className="flex flex-wrap items-center justify-between gap-2">
-                <h3 className="text-lg font-bold text-sky-400">{test.name}</h3>
+                <h3 className="text-lg font-bold text-purple-300">{test.name}</h3>
                 {test.decision && (
                   <span className={`px-3 py-1 rounded-full text-xs font-bold ${
                     test.decision.includes('Reject H0')
-                      ? 'bg-emerald-500/10 text-emerald-400 border border-emerald-500/20'
+                      ? 'bg-emerald-500/10 text-emerald-400 border border-emerald-500/25'
                       : 'bg-slate-800 text-slate-400'
                   }`}>
                     {test.decision}
@@ -347,7 +347,7 @@ export default function Stats() {
                   )}
                 </div>
 
-                <div className="p-4 rounded-2xl bg-slate-950 border border-slate-800 font-mono text-xs space-y-2 flex flex-col justify-center">
+                <div className="p-4 rounded-2xl bg-[#07070e] border border-purple-500/20 font-mono text-xs space-y-2 flex flex-col justify-center">
                   {test.p_value !== undefined && (
                     <div className="flex justify-between">
                       <span className="text-slate-500">p-value:</span>
@@ -365,13 +365,13 @@ export default function Stats() {
                   {test.effect_size && (
                     <div className="flex justify-between">
                       <span className="text-slate-500">Effect Size ({test.effect_size.type}):</span>
-                      <span className="text-indigo-400 font-bold">{test.effect_size.value}</span>
+                      <span className="text-purple-300 font-bold">{test.effect_size.value}</span>
                     </div>
                   )}
                   {test.pearson_r !== undefined && (
                     <div className="flex justify-between">
                       <span className="text-slate-500">Pearson r:</span>
-                      <span className="text-sky-400 font-bold">{test.pearson_r}</span>
+                      <span className="text-violet-300 font-bold">{test.pearson_r}</span>
                     </div>
                   )}
                 </div>
@@ -386,12 +386,12 @@ export default function Stats() {
         <div className="space-y-6">
           <div className="grid md:grid-cols-2 gap-6">
             
-            <div className="p-6 rounded-3xl bg-slate-900 border border-slate-800 space-y-3">
-              <h3 className="text-base font-bold text-sky-400">1. Bayes' Theorem & Total Probability</h3>
+            <div className="p-6 rounded-3xl bg-[#0e0e18] border border-purple-500/20 space-y-3">
+              <h3 className="text-base font-bold text-purple-300">1. Bayes' Theorem & Total Probability</h3>
               <p className="text-xs text-slate-300 leading-relaxed">
                 Rather than outputting static labels, our engine updates baseline carrier and airport priors using real-time meteorological conditions as evidence:
               </p>
-              <div className="p-3 bg-slate-950 rounded-xl border border-slate-800 font-mono text-xs text-sky-300">
+              <div className="p-3 bg-[#07070e] rounded-xl border border-purple-500/20 font-mono text-xs text-purple-300">
                 P(Class | Weather) = [ P(Weather | Class) · P(Class) ] / P(Weather)
               </div>
               <p className="text-xs text-slate-400">
@@ -399,12 +399,12 @@ export default function Stats() {
               </p>
             </div>
 
-            <div className="p-6 rounded-3xl bg-slate-900 border border-slate-800 space-y-3">
+            <div className="p-6 rounded-3xl bg-[#0e0e18] border border-purple-500/20 space-y-3">
               <h3 className="text-base font-bold text-emerald-400">2. Wilson Score Confidence Intervals</h3>
               <p className="text-xs text-slate-300 leading-relaxed">
                 For every probability shown in our UI, we compute the asymmetric 95% Wilson score interval:
               </p>
-              <div className="p-3 bg-slate-950 rounded-xl border border-slate-800 font-mono text-xs text-emerald-300">
+              <div className="p-3 bg-[#07070e] rounded-xl border border-purple-500/20 font-mono text-xs text-emerald-300">
                 w = (p + z²/2n ± z·√(p(1-p)/n + z²/4n²)) / (1 + z²/n)
               </div>
               <p className="text-xs text-slate-400">
@@ -412,12 +412,12 @@ export default function Stats() {
               </p>
             </div>
 
-            <div className="p-6 rounded-3xl bg-slate-900 border border-slate-800 space-y-3">
-              <h3 className="text-base font-bold text-indigo-400">3. Parametric Log-Normal Delay Fitting</h3>
+            <div className="p-6 rounded-3xl bg-[#0e0e18] border border-purple-500/20 space-y-3">
+              <h3 className="text-base font-bold text-violet-300">3. Parametric Log-Normal Delay Fitting</h3>
               <p className="text-xs text-slate-300 leading-relaxed">
                 Delay minutes follow a heavy-tailed, positively skewed distribution. We fit a continuous Log-Normal distribution (μ = 3.65, σ = 0.78) to positive delay minutes:
               </p>
-              <div className="p-3 bg-slate-950 rounded-xl border border-slate-800 font-mono text-xs text-indigo-300">
+              <div className="p-3 bg-[#07070e] rounded-xl border border-purple-500/20 font-mono text-xs text-violet-300">
                 E[Delay] = P(Delayed) × E[Delay | Delayed] + P(On-Time) × 0
               </div>
               <p className="text-xs text-slate-400">
@@ -425,12 +425,12 @@ export default function Stats() {
               </p>
             </div>
 
-            <div className="p-6 rounded-3xl bg-slate-900 border border-slate-800 space-y-3">
+            <div className="p-6 rounded-3xl bg-[#0e0e18] border border-purple-500/20 space-y-3">
               <h3 className="text-base font-bold text-amber-400">4. DGCA India Prior Calibration</h3>
               <p className="text-xs text-slate-300 leading-relaxed">
                 Because US BTS datasets only cover US airspace, our model dynamically adjusts its priors when predicting Indian domestic routes (e.g. IndiGo, Air India, Vistara):
               </p>
-              <div className="p-3 bg-slate-950 rounded-xl border border-slate-800 font-mono text-xs text-amber-300">
+              <div className="p-3 bg-[#07070e] rounded-xl border border-purple-500/20 font-mono text-xs text-amber-300">
                 Prior_India = DGCA Official Published Monthly OTP
               </div>
               <p className="text-xs text-slate-400">

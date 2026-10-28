@@ -26,11 +26,13 @@ export default function Home({ onNavigate, onLaunchFacultyDemo, user }: HomeProp
   };
 
   return (
-    <div className="w-full flex flex-col items-center">
+    <div className="w-full flex flex-col items-center bg-[#07070b] text-slate-100">
+      
       {/* Hero Section with Airport & Aviation Background */}
-      <div className="w-full relative overflow-hidden bg-slate-900 border-b border-slate-800">
-        <div className="absolute inset-0 opacity-25 bg-[url('https://images.unsplash.com/photo-1436491865332-7a61a109cc05?q=80&w=2074&auto=format&fit=crop')] bg-cover bg-center"></div>
-        <div className="absolute inset-0 bg-gradient-to-b from-slate-950/70 via-slate-900/90 to-slate-950"></div>
+      <div className="w-full relative overflow-hidden bg-[#07070b] border-b border-purple-500/15">
+        <div className="absolute inset-0 opacity-20 bg-[url('https://images.unsplash.com/photo-1436491865332-7a61a109cc05?q=80&w=2074&auto=format&fit=crop')] bg-cover bg-center mix-blend-luminosity"></div>
+        <div className="absolute top-1/4 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[350px] bg-purple-600/15 rounded-full blur-[140px] pointer-events-none"></div>
+        <div className="absolute inset-0 bg-gradient-to-b from-[#07070b]/60 via-[#07070b]/90 to-[#07070b]"></div>
         
         <div className="relative max-w-6xl mx-auto px-4 pt-12 pb-20 flex flex-col items-center text-center">
           
@@ -38,25 +40,25 @@ export default function Home({ onNavigate, onLaunchFacultyDemo, user }: HomeProp
           <div className="flex flex-wrap items-center justify-center gap-3 mb-6">
             <button
               onClick={onLaunchFacultyDemo}
-              className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-gradient-to-r from-sky-500/20 to-indigo-500/20 border border-sky-500/30 text-sky-300 text-xs font-semibold hover:border-sky-400 hover:scale-105 transition cursor-pointer shadow-lg shadow-sky-500/10"
+              className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-gradient-to-r from-purple-500/20 to-violet-500/20 border border-purple-500/35 text-purple-300 text-xs font-semibold hover:border-purple-400 hover:scale-105 transition cursor-pointer shadow-lg shadow-purple-500/10"
             >
-              <GraduationCap size={15} />
+              <GraduationCap size={15} className="text-purple-400" />
               <span>Faculty Evaluation Mode: Click to Auto-Load Chennai → Mumbai Demo</span>
               <ArrowRight size={13} />
             </button>
           </div>
           
           <h1 className="text-4xl sm:text-6xl font-black tracking-tight text-white mb-4 max-w-4xl">
-            Flight Booking with <span className="text-transparent bg-clip-text bg-gradient-to-r from-sky-400 via-blue-400 to-indigo-400">Delay Probability</span>
+            Flight Booking with <span className="text-transparent bg-clip-text bg-gradient-to-r from-purple-400 via-violet-300 to-indigo-300">Delay Probability</span>
           </h1>
           
-          <p className="text-base sm:text-lg text-slate-300 mb-8 max-w-2xl leading-relaxed">
+          <p className="text-base sm:text-lg text-slate-300/90 mb-8 max-w-2xl leading-relaxed">
             Search scheduled flights with MakeMyTrip-style convenience and evaluate real-time calibrated disruption probabilities powered by US BTS records, DGCA India priors, and live Open-Meteo weather.
           </p>
 
           {/* Quick Route Shortcuts */}
           <div className="flex flex-wrap items-center justify-center gap-2 mb-8">
-            <span className="text-xs text-slate-400 font-semibold mr-1">Popular Demo Routes:</span>
+            <span className="text-xs text-purple-400 font-semibold mr-1">Popular Demo Routes:</span>
             {[
               { origin: 'MAA', dest: 'BOM', label: 'Chennai → Mumbai' },
               { origin: 'DEL', dest: 'BLR', label: 'Delhi → Bengaluru' },
@@ -66,7 +68,7 @@ export default function Home({ onNavigate, onLaunchFacultyDemo, user }: HomeProp
               <button
                 key={`${r.origin}-${r.dest}`}
                 onClick={() => handleDemoRoute(r.origin, r.dest)}
-                className="px-3 py-1 rounded-full text-xs font-medium bg-slate-800/80 hover:bg-slate-700 text-slate-200 border border-slate-700/80 transition flex items-center gap-1 cursor-pointer"
+                className="px-3.5 py-1 rounded-full text-xs font-medium bg-[#11111d] hover:bg-[#181829] text-slate-200 border border-purple-500/25 hover:border-purple-400/50 transition flex items-center gap-1 cursor-pointer"
               >
                 <span>{r.label}</span>
               </button>
@@ -98,9 +100,9 @@ export default function Home({ onNavigate, onLaunchFacultyDemo, user }: HomeProp
         </div>
 
         <div className="grid md:grid-cols-3 gap-8">
-          <div className="p-7 rounded-3xl bg-slate-900/60 border border-slate-800/80 flex flex-col justify-between hover:border-slate-700 transition">
+          <div className="p-7 rounded-3xl bg-[#0e0e18] border border-purple-500/20 hover:border-purple-500/40 transition flex flex-col justify-between">
             <div>
-              <div className="p-3.5 bg-blue-500/10 text-blue-400 rounded-2xl w-fit mb-5 border border-blue-500/20">
+              <div className="p-3.5 bg-purple-500/10 text-purple-400 rounded-2xl w-fit mb-5 border border-purple-500/20">
                 <Plane className="w-6 h-6 transform -rotate-45" />
               </div>
               <h3 className="text-lg font-bold text-slate-100 mb-2">MakeMyTrip-Style Booking</h3>
@@ -108,14 +110,14 @@ export default function Home({ onNavigate, onLaunchFacultyDemo, user }: HomeProp
                 Full flight search interface with one-way/round-trip support, passenger & cabin selection, Indian metro airports, and direct deep-links to MakeMyTrip and airline portals.
               </p>
             </div>
-            <div className="mt-6 pt-4 border-t border-slate-800/60 flex items-center gap-2 text-xs text-sky-400 font-semibold">
+            <div className="mt-6 pt-4 border-t border-purple-500/15 flex items-center gap-2 text-xs text-purple-400 font-semibold">
               <span>Authentic Schedules & Fares</span>
             </div>
           </div>
           
-          <div className="p-7 rounded-3xl bg-slate-900/60 border border-slate-800/80 flex flex-col justify-between hover:border-slate-700 transition">
+          <div className="p-7 rounded-3xl bg-[#0e0e18] border border-purple-500/20 hover:border-purple-500/40 transition flex flex-col justify-between">
             <div>
-              <div className="p-3.5 bg-purple-500/10 text-purple-400 rounded-2xl w-fit mb-5 border border-purple-500/20">
+              <div className="p-3.5 bg-violet-500/10 text-violet-400 rounded-2xl w-fit mb-5 border border-violet-500/20">
                 <BarChart3 className="w-6 h-6" />
               </div>
               <h3 className="text-lg font-bold text-slate-100 mb-2">Leakage-Free Calibrated ML</h3>
@@ -123,12 +125,12 @@ export default function Home({ onNavigate, onLaunchFacultyDemo, user }: HomeProp
                 Strict forward-holdout validation with zero post-departure data leakage. Outputs calibrated probabilities, multi-class confusion matrices, and 95% Wilson confidence intervals.
               </p>
             </div>
-            <div className="mt-6 pt-4 border-t border-slate-800/60 flex items-center gap-2 text-xs text-purple-400 font-semibold">
+            <div className="mt-6 pt-4 border-t border-purple-500/15 flex items-center gap-2 text-xs text-violet-400 font-semibold">
               <span>Platt-Scaled Logistic Regression</span>
             </div>
           </div>
           
-          <div className="p-7 rounded-3xl bg-slate-900/60 border border-slate-800/80 flex flex-col justify-between hover:border-slate-700 transition">
+          <div className="p-7 rounded-3xl bg-[#0e0e18] border border-purple-500/20 hover:border-purple-500/40 transition flex flex-col justify-between">
             <div>
               <div className="p-3.5 bg-emerald-500/10 text-emerald-400 rounded-2xl w-fit mb-5 border border-emerald-500/20">
                 <Database className="w-6 h-6" />
@@ -138,7 +140,7 @@ export default function Home({ onNavigate, onLaunchFacultyDemo, user }: HomeProp
                 Zero fabricated records. Grounded in 538,000+ US BTS flight records and DGCA India monthly airline OTP benchmarks for IndiGo, Air India, Akasa, and SpiceJet.
               </p>
             </div>
-            <div className="mt-6 pt-4 border-t border-slate-800/60 flex items-center gap-2 text-xs text-emerald-400 font-semibold">
+            <div className="mt-6 pt-4 border-t border-purple-500/15 flex items-center gap-2 text-xs text-emerald-400 font-semibold">
               <span>DGCA & Open-Meteo Verified</span>
             </div>
           </div>

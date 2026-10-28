@@ -142,14 +142,15 @@ export default function FlightSearch({ initialParams, onSaveFlight }: FlightSear
   const comparedFlights = rawFlights.filter((f: any) => comparedFlightIds.includes(f.id));
 
   return (
-    <div className="w-full min-h-screen bg-slate-950 text-slate-100 text-left pb-28">
+    <div className="w-full min-h-screen bg-[#07070b] text-slate-100 text-left pb-28">
       
       {/* Top Search Bar & Summary Strip */}
-      <div className="border-b border-slate-800 bg-slate-900/90 backdrop-blur-md sticky top-16 z-40">
+      <div className="border-b border-purple-500/15 bg-[#090912]/90 backdrop-blur-md sticky top-16 z-40">
         <div className="max-w-7xl mx-auto px-4 py-4">
           <div className="flex flex-wrap items-center justify-between gap-4">
+            
             <div className="flex items-center gap-3">
-              <div className="bg-sky-500/20 p-2.5 rounded-xl text-sky-400">
+              <div className="bg-purple-500/20 p-2.5 rounded-xl text-purple-300 border border-purple-500/30">
                 <Plane size={20} className="transform -rotate-45" />
               </div>
               <div>
@@ -157,11 +158,11 @@ export default function FlightSearch({ initialParams, onSaveFlight }: FlightSear
                   <h1 className="text-lg font-bold text-slate-100">
                     {searchResponse?.origin?.city || searchParams.origin}
                   </h1>
-                  <span className="text-slate-500 font-semibold">→</span>
+                  <span className="text-purple-400 font-semibold">→</span>
                   <h1 className="text-lg font-bold text-slate-100">
                     {searchResponse?.destination?.city || searchParams.destination}
                   </h1>
-                  <span className="text-xs px-2 py-0.5 rounded bg-sky-500/10 text-sky-400 border border-sky-500/20 font-semibold">
+                  <span className="text-xs px-2 py-0.5 rounded bg-purple-500/15 text-purple-300 border border-purple-500/30 font-semibold">
                     {searchParams.cabin_class}
                   </span>
                 </div>
@@ -173,16 +174,16 @@ export default function FlightSearch({ initialParams, onSaveFlight }: FlightSear
 
             <button
               onClick={() => setIsModifyingSearch(!isModifyingSearch)}
-              className="px-5 py-2.5 bg-slate-800 hover:bg-slate-700 text-slate-200 text-xs font-semibold rounded-xl border border-slate-700 transition flex items-center gap-2 cursor-pointer"
+              className="px-5 py-2.5 bg-[#121220] hover:bg-[#1a1a2e] text-purple-200 text-xs font-semibold rounded-xl border border-purple-500/30 transition flex items-center gap-2 cursor-pointer shadow-sm"
             >
-              <Search size={14} />
+              <Search size={14} className="text-purple-400" />
               <span>{isModifyingSearch ? 'Close Search Bar' : 'Modify Search'}</span>
             </button>
           </div>
 
           {/* Expandable Search Widget */}
           {isModifyingSearch && (
-            <div className="mt-4 pt-4 border-t border-slate-800">
+            <div className="mt-4 pt-4 border-t border-purple-500/15">
               <FlightSearchWidget
                 defaultOrigin={searchParams.origin}
                 defaultDestination={searchParams.destination}
@@ -200,39 +201,39 @@ export default function FlightSearch({ initialParams, onSaveFlight }: FlightSear
         {/* Fast Insights Highlights Strip */}
         {searchResponse && (
           <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 mb-8">
-            <div className="p-4 rounded-2xl bg-slate-900/60 border border-slate-800/80 flex items-center justify-between">
+            <div className="p-5 rounded-2xl bg-[#0e0e18] border border-purple-500/20 flex items-center justify-between">
               <div>
-                <span className="text-xs text-slate-400 block">Lowest Available Fare</span>
-                <span className="text-xl font-black text-slate-100">
+                <span className="text-xs text-slate-400 block mb-0.5">Lowest Available Fare</span>
+                <span className="text-2xl font-black text-slate-100">
                   ₹{searchResponse.metadata?.cheapest_price?.toLocaleString('en-IN')}
                 </span>
               </div>
-              <span className="text-xs px-2.5 py-1 rounded-full bg-emerald-500/10 text-emerald-400 border border-emerald-500/20 font-bold">
+              <span className="text-xs px-3 py-1 rounded-full bg-emerald-500/10 text-emerald-400 border border-emerald-500/25 font-bold">
                 Best Price
               </span>
             </div>
 
-            <div className="p-4 rounded-2xl bg-slate-900/60 border border-slate-800/80 flex items-center justify-between">
+            <div className="p-5 rounded-2xl bg-[#0e0e18] border border-purple-500/20 flex items-center justify-between">
               <div>
-                <span className="text-xs text-slate-400 block">Fastest Journey Duration</span>
-                <span className="text-xl font-black text-slate-100">
+                <span className="text-xs text-slate-400 block mb-0.5">Fastest Journey Duration</span>
+                <span className="text-2xl font-black text-slate-100">
                   {Math.floor(searchResponse.metadata?.fastest_duration_minutes / 60)}h {searchResponse.metadata?.fastest_duration_minutes % 60}m
                 </span>
               </div>
-              <span className="text-xs px-2.5 py-1 rounded-full bg-blue-500/10 text-blue-400 border border-blue-500/20 font-bold">
+              <span className="text-xs px-3 py-1 rounded-full bg-purple-500/10 text-purple-300 border border-purple-500/25 font-bold">
                 Non-Stop
               </span>
             </div>
 
-            <div className="p-4 rounded-2xl bg-slate-900/60 border border-slate-800/80 flex items-center justify-between">
+            <div className="p-5 rounded-2xl bg-[#0e0e18] border border-purple-500/20 flex items-center justify-between">
               <div>
-                <span className="text-xs text-slate-400 block">Lowest Disruption Delay Risk</span>
-                <span className="text-xl font-black text-emerald-400">
+                <span className="text-xs text-slate-400 block mb-0.5">Lowest Disruption Risk</span>
+                <span className="text-2xl font-black text-emerald-400">
                   {searchResponse.metadata?.lowest_delay_risk_pct}% Risk
                 </span>
               </div>
-              <span className="text-xs px-2.5 py-1 rounded-full bg-sky-500/10 text-sky-400 border border-sky-500/20 font-bold flex items-center gap-1">
-                <ShieldCheck size={13} />
+              <span className="text-xs px-3 py-1 rounded-full bg-purple-500/10 text-purple-300 border border-purple-500/25 font-bold flex items-center gap-1">
+                <ShieldCheck size={14} className="text-purple-400" />
                 <span>Calibrated ML</span>
               </span>
             </div>
@@ -242,7 +243,7 @@ export default function FlightSearch({ initialParams, onSaveFlight }: FlightSear
         {/* Loading & Error States */}
         {loading && (
           <div className="py-20 text-center space-y-4">
-            <div className="inline-block animate-spin rounded-full h-10 w-10 border-4 border-sky-500 border-t-transparent"></div>
+            <div className="inline-block animate-spin rounded-full h-10 w-10 border-4 border-purple-500 border-t-transparent"></div>
             <p className="text-slate-400 text-sm">Evaluating real-time delay probabilities for all scheduled flights...</p>
           </div>
         )}
@@ -262,10 +263,10 @@ export default function FlightSearch({ initialParams, onSaveFlight }: FlightSear
             
             {/* LEFT FILTERS SIDEBAR */}
             <div className="lg:col-span-1 space-y-6">
-              <div className="p-5 rounded-2xl bg-slate-900/80 border border-slate-800 space-y-6">
-                <div className="flex items-center justify-between border-b border-slate-800 pb-3">
+              <div className="p-5 rounded-2xl bg-[#0e0e18] border border-purple-500/20 space-y-6">
+                <div className="flex items-center justify-between border-b border-purple-500/15 pb-3">
                   <div className="flex items-center gap-2 text-sm font-bold text-slate-100">
-                    <Filter size={16} />
+                    <Filter size={16} className="text-purple-400" />
                     <span>Filter Flights</span>
                   </div>
                   <button
@@ -274,7 +275,7 @@ export default function FlightSearch({ initialParams, onSaveFlight }: FlightSear
                       setSelectedAirlines([]);
                       setSelectedRiskLevels([]);
                     }}
-                    className="text-xs text-sky-400 hover:underline cursor-pointer"
+                    className="text-xs text-purple-400 hover:underline cursor-pointer font-semibold"
                   >
                     Reset
                   </button>
@@ -301,7 +302,7 @@ export default function FlightSearch({ initialParams, onSaveFlight }: FlightSear
                               setSelectedStops([...selectedStops, st.id]);
                             }
                           }}
-                          className="rounded border-slate-700 bg-slate-950 text-sky-500 focus:ring-sky-500"
+                          className="rounded border-purple-500/30 bg-[#07070e] text-purple-600 focus:ring-purple-500"
                         />
                         <span>{st.label}</span>
                       </label>
@@ -331,7 +332,7 @@ export default function FlightSearch({ initialParams, onSaveFlight }: FlightSear
                               setSelectedRiskLevels([...selectedRiskLevels, risk.id]);
                             }
                           }}
-                          className="rounded border-slate-700 bg-slate-950 text-sky-500 focus:ring-sky-500"
+                          className="rounded border-purple-500/30 bg-[#07070e] text-purple-600 focus:ring-purple-500"
                         />
                         <span className={risk.color}>{risk.label}</span>
                       </label>
@@ -363,7 +364,7 @@ export default function FlightSearch({ initialParams, onSaveFlight }: FlightSear
                               setSelectedAirlines([...selectedAirlines, air.code]);
                             }
                           }}
-                          className="rounded border-slate-700 bg-slate-950 text-sky-500 focus:ring-sky-500"
+                          className="rounded border-purple-500/30 bg-[#07070e] text-purple-600 focus:ring-purple-500"
                         />
                         <span>{air.name} ({air.code})</span>
                       </label>
@@ -378,9 +379,9 @@ export default function FlightSearch({ initialParams, onSaveFlight }: FlightSear
             <div className="lg:col-span-3 space-y-5">
               
               {/* SORTING TAB BAR (MakeMyTrip Style) */}
-              <div className="flex flex-wrap items-center gap-2 bg-slate-900/80 border border-slate-800 p-1.5 rounded-2xl text-xs font-semibold">
+              <div className="flex flex-wrap items-center gap-2 bg-[#0e0e18] border border-purple-500/20 p-1.5 rounded-2xl text-xs font-semibold">
                 {[
-                  { id: 'smart', label: '⚡ Smart Recommendation', desc: 'Best Value & Reliability' },
+                  { id: 'smart', label: '⚡ Smart Choice', desc: 'Best Value & Reliability' },
                   { id: 'price', label: '💰 Cheapest First', desc: 'Lowest Fare' },
                   { id: 'duration', label: '⏱️ Fastest First', desc: 'Shortest Journey' },
                   { id: 'risk', label: '🛡️ Lowest Delay Risk', desc: 'Highest On-Time %' },
@@ -391,8 +392,8 @@ export default function FlightSearch({ initialParams, onSaveFlight }: FlightSear
                     onClick={() => setSortBy(s.id as any)}
                     className={`flex-1 min-w-[140px] py-2.5 px-3 rounded-xl transition text-center cursor-pointer ${
                       sortBy === s.id
-                        ? 'bg-sky-500 text-white shadow-md'
-                        : 'text-slate-400 hover:text-slate-200 hover:bg-slate-800/60'
+                        ? 'bg-gradient-to-r from-purple-600 to-violet-600 text-white shadow-md shadow-purple-600/30'
+                        : 'text-slate-400 hover:text-slate-200 hover:bg-purple-950/20'
                     }`}
                   >
                     <span>{s.label}</span>
@@ -410,17 +411,17 @@ export default function FlightSearch({ initialParams, onSaveFlight }: FlightSear
                   return (
                     <div
                       key={fl.id}
-                      className={`p-6 rounded-3xl bg-slate-900/80 border transition hover:border-sky-500/50 relative overflow-hidden ${
+                      className={`p-6 rounded-3xl bg-[#0e0e18] border transition hover:border-purple-500/40 relative overflow-hidden ${
                         fl.is_smart_recommended
-                          ? 'border-sky-500/80 shadow-xl shadow-sky-500/5 ring-1 ring-sky-500/30'
-                          : 'border-slate-800'
+                          ? 'border-purple-500/80 shadow-xl shadow-purple-950/30 ring-1 ring-purple-500/30'
+                          : 'border-purple-500/15'
                       }`}
                     >
                       {/* Smart Recommendation Banner */}
                       {fl.is_smart_recommended && (
-                        <div className="mb-4 -mx-6 -mt-6 px-6 py-2 bg-gradient-to-r from-sky-500/20 via-blue-500/10 to-transparent border-b border-sky-500/30 flex items-center justify-between">
-                          <div className="flex items-center gap-2 text-sky-400 text-xs font-bold">
-                            <Sparkles size={14} />
+                        <div className="mb-4 -mx-6 -mt-6 px-6 py-2.5 bg-gradient-to-r from-purple-500/20 via-violet-500/10 to-transparent border-b border-purple-500/30 flex items-center justify-between">
+                          <div className="flex items-center gap-2 text-purple-300 text-xs font-bold">
+                            <Sparkles size={14} className="text-purple-400" />
                             <span>AeroProb Smart Choice</span>
                           </div>
                           <p className="text-[11px] text-slate-300">
@@ -434,7 +435,7 @@ export default function FlightSearch({ initialParams, onSaveFlight }: FlightSear
                         
                         {/* Airline & Flight Info (3 Cols) */}
                         <div className="md:col-span-3 flex items-center gap-3">
-                          <div className="w-10 h-10 rounded-xl bg-slate-950 border border-slate-800 flex items-center justify-center text-sky-400 font-bold text-sm shadow">
+                          <div className="w-10 h-10 rounded-xl bg-[#07070e] border border-purple-500/25 flex items-center justify-center text-purple-300 font-bold text-sm shadow">
                             {fl.airline?.code}
                           </div>
                           <div>
@@ -457,8 +458,8 @@ export default function FlightSearch({ initialParams, onSaveFlight }: FlightSear
                           {/* Duration & Stops graphic */}
                           <div className="flex flex-col items-center px-4">
                             <span className="text-xs font-semibold text-slate-400 mb-1">{fl.duration}</span>
-                            <div className="w-24 sm:w-32 h-0.5 bg-slate-700 relative flex items-center justify-center">
-                              <Plane size={14} className="text-sky-400 transform rotate-90 absolute" />
+                            <div className="w-24 sm:w-32 h-0.5 bg-purple-900/50 relative flex items-center justify-center">
+                              <Plane size={14} className="text-purple-400 transform rotate-90 absolute" />
                             </div>
                             <span className="text-[10px] text-slate-400 mt-1">{fl.stop_details}</span>
                           </div>
@@ -472,7 +473,7 @@ export default function FlightSearch({ initialParams, onSaveFlight }: FlightSear
                         </div>
 
                         {/* Price & Primary CTA (4 Cols) */}
-                        <div className="md:col-span-4 flex flex-col items-end justify-center border-t md:border-t-0 md:border-l border-slate-800/80 pt-4 md:pt-0 md:pl-6">
+                        <div className="md:col-span-4 flex flex-col items-end justify-center border-t md:border-t-0 md:border-l border-purple-500/15 pt-4 md:pt-0 md:pl-6">
                           <div className="text-right">
                             <span className="text-xs text-slate-400">Total Fare</span>
                             <div className="text-2xl font-black text-slate-100">
@@ -484,23 +485,25 @@ export default function FlightSearch({ initialParams, onSaveFlight }: FlightSear
                           <div className="flex items-center gap-2 mt-3 w-full justify-end">
                             <button
                               onClick={() => handleSaveToggle(fl)}
-                              className={`p-2.5 rounded-xl border transition ${
+                              className={`p-2.5 rounded-xl border transition cursor-pointer ${
                                 isSaved
-                                  ? 'bg-sky-500/20 border-sky-500 text-sky-400'
-                                  : 'bg-slate-950 border-slate-800 text-slate-400 hover:text-white'
+                                  ? 'bg-purple-500/20 border-purple-500 text-purple-300'
+                                  : 'bg-[#07070e] border-purple-500/20 text-slate-400 hover:text-white'
                               }`}
                               title={isSaved ? 'Saved to wishlist' : 'Save flight'}
                             >
                               {isSaved ? <BookmarkCheck size={16} /> : <Bookmark size={16} />}
                             </button>
 
+                            {/* External booking button fixed with valid MMT search parameters and label */}
                             <a
                               href={fl.booking_links?.makemytrip}
                               target="_blank"
                               rel="noopener noreferrer"
-                              className="px-6 py-2.5 bg-gradient-to-r from-blue-600 to-sky-600 hover:from-blue-500 hover:to-sky-500 text-white text-xs font-bold rounded-xl flex items-center gap-1.5 transition shadow-lg shadow-sky-600/20 cursor-pointer"
+                              className="px-5 py-2.5 bg-gradient-to-r from-purple-600 to-violet-600 hover:from-purple-500 hover:to-violet-500 text-white text-xs font-bold rounded-xl flex items-center gap-1.5 transition shadow-lg shadow-purple-600/25 cursor-pointer"
+                              title="Open actual MakeMyTrip search results in a new tab"
                             >
-                              <span>Book on MMT</span>
+                              <span>Search on MakeMyTrip (External)</span>
                               <ExternalLink size={13} />
                             </a>
                           </div>
@@ -509,7 +512,7 @@ export default function FlightSearch({ initialParams, onSaveFlight }: FlightSear
                       </div>
 
                       {/* INTEGRATED DELAY PROBABILITY ENGINE CARD */}
-                      <div className="mt-5 pt-4 border-t border-slate-800/80 bg-slate-950/60 -mx-6 -mb-6 p-6">
+                      <div className="mt-5 pt-4 border-t border-purple-500/15 bg-[#07070e]/80 -mx-6 -mb-6 p-6">
                         <div className="flex flex-wrap items-center justify-between gap-4">
                           <div className="flex items-center gap-2">
                             <span className="text-xs font-bold text-slate-300 uppercase tracking-wider">
@@ -527,19 +530,19 @@ export default function FlightSearch({ initialParams, onSaveFlight }: FlightSear
                           </div>
 
                           <div className="flex items-center gap-4 text-xs">
-                            <label className="flex items-center gap-2 cursor-pointer text-slate-300 hover:text-sky-400 transition">
+                            <label className="flex items-center gap-2 cursor-pointer text-slate-300 hover:text-purple-300 transition">
                               <input
                                 type="checkbox"
                                 checked={isCompared}
                                 onChange={() => toggleCompare(fl.id)}
-                                className="rounded border-slate-700 bg-slate-950 text-sky-500 focus:ring-sky-500"
+                                className="rounded border-purple-500/30 bg-[#07070e] text-purple-600 focus:ring-purple-500"
                               />
                               <span className="font-semibold">Compare Flight</span>
                             </label>
 
                             <button
                               onClick={() => toggleMath(fl.id)}
-                              className="text-sky-400 hover:text-sky-300 font-semibold flex items-center gap-1 cursor-pointer"
+                              className="text-purple-400 hover:text-purple-300 font-semibold flex items-center gap-1 cursor-pointer"
                             >
                               <span>Statistical Details</span>
                               {isMathExpanded ? <ChevronUp size={14} /> : <ChevronDown size={14} />}
@@ -549,7 +552,7 @@ export default function FlightSearch({ initialParams, onSaveFlight }: FlightSear
 
                         {/* Segmented 3-Way Probability Bar */}
                         <div className="mt-3 space-y-1.5">
-                          <div className="w-full h-3 rounded-full bg-slate-800 overflow-hidden flex shadow-inner">
+                          <div className="w-full h-3 rounded-full bg-slate-900 overflow-hidden flex border border-purple-500/20 shadow-inner">
                             <div
                               style={{ width: `${fl.prediction?.probabilities?.ontime}%` }}
                               className="bg-emerald-500 h-full transition-all duration-500"
@@ -594,26 +597,26 @@ export default function FlightSearch({ initialParams, onSaveFlight }: FlightSear
 
                         {/* Expandable Mathematical Breakdown */}
                         {isMathExpanded && (
-                          <div className="mt-4 pt-4 border-t border-slate-800 text-xs space-y-3 bg-slate-900/70 p-4 rounded-xl animate-in fade-in duration-150">
+                          <div className="mt-4 pt-4 border-t border-purple-500/15 text-xs space-y-3 bg-[#0c0c16] p-4 rounded-2xl animate-in fade-in duration-150">
                             <div className="flex items-center justify-between">
                               <span className="font-bold text-slate-200">Bayes' Theorem & Inference Breakdown</span>
-                              <span className="text-[10px] text-slate-400">Calibrated Logistic Regression & DGCA Priors</span>
+                              <span className="text-[10px] text-purple-400">Calibrated Logistic Regression & DGCA Priors</span>
                             </div>
                             
                             <div className="grid grid-cols-1 sm:grid-cols-3 gap-3">
-                              <div className="p-2.5 rounded-lg bg-slate-950 border border-slate-800">
+                              <div className="p-2.5 rounded-xl bg-[#07070e] border border-purple-500/20">
                                 <span className="text-[10px] text-slate-400 block">On-Time 95% Wilson CI</span>
                                 <span className="font-bold text-emerald-400">
                                   {fl.prediction?.confidence_intervals?.ontime ? `[${fl.prediction.confidence_intervals.ontime[0] * 100}%, ${fl.prediction.confidence_intervals.ontime[1] * 100}%]` : 'N/A'}
                                 </span>
                               </div>
-                              <div className="p-2.5 rounded-lg bg-slate-950 border border-slate-800">
+                              <div className="p-2.5 rounded-xl bg-[#07070e] border border-purple-500/20">
                                 <span className="text-[10px] text-slate-400 block">Delay 95% Wilson CI</span>
                                 <span className="font-bold text-amber-400">
                                   {fl.prediction?.confidence_intervals?.delayed ? `[${fl.prediction.confidence_intervals.delayed[0] * 100}%, ${fl.prediction.confidence_intervals.delayed[1] * 100}%]` : 'N/A'}
                                 </span>
                               </div>
-                              <div className="p-2.5 rounded-lg bg-slate-950 border border-slate-800">
+                              <div className="p-2.5 rounded-xl bg-[#07070e] border border-purple-500/20">
                                 <span className="text-[10px] text-slate-400 block">Live Origin Weather</span>
                                 <span className="font-bold text-slate-200">
                                   {fl.prediction?.weather_summary?.temp_c}°C, Wind {fl.prediction?.weather_summary?.wind_kmh} km/h
@@ -633,8 +636,8 @@ export default function FlightSearch({ initialParams, onSaveFlight }: FlightSear
                   );
                 })
               ) : (
-                <div className="p-12 text-center bg-slate-900/40 border border-slate-800 rounded-3xl space-y-3">
-                  <Plane size={36} className="mx-auto text-slate-600 transform -rotate-45" />
+                <div className="p-12 text-center bg-[#0e0e18] border border-purple-500/20 rounded-3xl space-y-3">
+                  <Plane size={36} className="mx-auto text-purple-400/50 transform -rotate-45" />
                   <h3 className="text-base font-bold text-slate-200">No Flights Match Your Filters</h3>
                   <p className="text-xs text-slate-400 max-w-md mx-auto">
                     Try adjusting the stop count, airlines, or disruption risk thresholds in the filter sidebar.
@@ -649,9 +652,9 @@ export default function FlightSearch({ initialParams, onSaveFlight }: FlightSear
 
       </div>
 
-      {/* FLOATING COMPARISON DOCK (Bottom of screen when 1+ flights selected) */}
+      {/* FLOATING COMPARISON DOCK */}
       {comparedFlightIds.length > 0 && (
-        <div className="fixed bottom-0 left-0 right-0 z-40 bg-slate-900/95 border-t border-slate-800 p-4 backdrop-blur-xl shadow-2xl">
+        <div className="fixed bottom-0 left-0 right-0 z-40 bg-[#0a0a14]/95 border-t border-purple-500/25 p-4 backdrop-blur-xl shadow-2xl">
           <div className="max-w-7xl mx-auto flex items-center justify-between">
             <div className="flex items-center gap-3">
               <span className="font-bold text-sm text-slate-100">
@@ -659,11 +662,11 @@ export default function FlightSearch({ initialParams, onSaveFlight }: FlightSear
               </span>
               <div className="flex items-center gap-2">
                 {comparedFlights.map((f: any) => (
-                  <span key={f.id} className="text-xs px-2.5 py-1 rounded-lg bg-slate-800 border border-slate-700 text-slate-200 flex items-center gap-1.5">
+                  <span key={f.id} className="text-xs px-2.5 py-1 rounded-xl bg-[#141424] border border-purple-500/30 text-purple-200 flex items-center gap-1.5">
                     <strong>{f.flight_number}</strong>
                     <button
                       onClick={() => toggleCompare(f.id)}
-                      className="text-slate-400 hover:text-rose-400"
+                      className="text-slate-400 hover:text-rose-400 cursor-pointer"
                     >
                       ×
                     </button>
@@ -675,13 +678,13 @@ export default function FlightSearch({ initialParams, onSaveFlight }: FlightSear
             <div className="flex items-center gap-3">
               <button
                 onClick={() => setComparedFlightIds([])}
-                className="text-xs text-slate-400 hover:text-slate-200 font-medium px-3 py-1.5"
+                className="text-xs text-slate-400 hover:text-slate-200 font-medium px-3 py-1.5 cursor-pointer"
               >
                 Clear All
               </button>
               <button
                 onClick={() => setIsCompareModalOpen(true)}
-                className="px-6 py-2.5 bg-sky-500 hover:bg-sky-400 text-white text-xs font-bold rounded-xl shadow-lg shadow-sky-500/20 transition cursor-pointer"
+                className="px-6 py-2.5 bg-gradient-to-r from-purple-600 to-violet-600 hover:from-purple-500 hover:to-violet-500 text-white text-xs font-bold rounded-xl shadow-lg shadow-purple-600/30 transition cursor-pointer"
               >
                 View Side-by-Side Comparison
               </button>

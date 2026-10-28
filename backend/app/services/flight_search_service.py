@@ -169,9 +169,28 @@ class FlightSearchService:
             exp_delay_min = pred_result["expected_delay"]["expected_delay_minutes"]
             risk_info = pred_result["risk_assessment"]
             
-            # External booking link generator
-            dep_date_nodash = dep_date.replace("-", "")
-            mmt_booking_url = f"https://www.makemytrip.com/flight/search?itinerary={origin_iata}-{dest_iata}-{dep_date_nodash}&tripType=O&paxType=A-{passengers.get('adults', 1)}_C-{passengers.get('children', 0)}_I-{passengers.get('infants', 0)}&intl={'false' if is_india_route else 'true'}&cabinClass={'E' if cabin_class == 'Economy' else 'B'}"
+            # Format date for MakeMyTrip query (DD/MM/YYYY required by MakeMyTrip router)
+            try:
+                dt_obj = datetime.strptime(dep_date, "%Y-%m-%d")
+                mmt_date_str = dt_obj.strftime("%d/%m/%Y")
+            except Exception:
+                mmt_date_str = dep_date
+
+            pax_adults = passengers.get('adults', 1)
+            pax_children = passengers.get('children', 0)
+            pax_infants = passengers.get('infants', 0)
+            cabin_code = 'E' if cabin_class == 'Economy' else ('W' if cabin_class == 'Premium Economy' else 'B')
+            intl_str = 'false' if is_india_route else 'true'
+
+            # Valid MakeMyTrip search URL format with proper DD/MM/YYYY itinerary parameter
+            mmt_booking_url = (
+                f"https://www.makemytrip.com/flight/search?"
+                f"itinerary={origin_iata}-{dest_iata}-{mmt_date_str}&"
+                f"tripType=O&"
+                f"paxType=A-{pax_adults}_C-{pax_children}_I-{pax_infants}&"
+                f"intl={intl_str}&"
+                f"cabinClass={cabin_code}"
+            )
             
             flight_card = {
                 "id": flight_id,

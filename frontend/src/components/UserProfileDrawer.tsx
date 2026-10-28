@@ -45,19 +45,20 @@ export default function UserProfileDrawer({
   };
 
   return (
-    <div className="fixed inset-0 z-50 bg-slate-950/80 backdrop-blur-sm flex justify-end text-left">
-      <div className="w-full max-w-md bg-slate-900 border-l border-slate-800 h-full flex flex-col shadow-2xl animate-in slide-in-from-right duration-200">
+    <div className="fixed inset-0 z-50 bg-[#040408]/80 backdrop-blur-md flex justify-end text-left">
+      <div className="w-full max-w-md bg-[#0e0e18] border-l border-purple-500/20 h-full flex flex-col shadow-2xl animate-in slide-in-from-right duration-200">
+        
         {/* Drawer Header */}
-        <div className="p-6 border-b border-slate-800 flex items-center justify-between bg-slate-950">
+        <div className="p-6 border-b border-purple-500/15 flex items-center justify-between bg-[#0a0a14]">
           <div className="flex items-center gap-3">
-            <div className="w-11 h-11 rounded-full bg-gradient-to-tr from-sky-500 to-indigo-600 flex items-center justify-center text-white font-bold text-lg shadow-md">
+            <div className="w-11 h-11 rounded-2xl bg-gradient-to-tr from-purple-600 to-violet-600 flex items-center justify-center text-white font-bold text-lg shadow-md shadow-purple-600/30 border border-purple-400/30">
               {user?.name ? user.name.charAt(0) : 'U'}
             </div>
             <div>
               <div className="flex items-center gap-2">
                 <h3 className="font-bold text-slate-100 text-base">{user?.name || 'Traveler'}</h3>
                 {user?.is_demo && (
-                  <span className="px-2 py-0.5 rounded-full bg-sky-500/20 text-sky-400 border border-sky-500/30 text-[10px] font-semibold">
+                  <span className="px-2 py-0.5 rounded-full bg-purple-500/20 text-purple-300 border border-purple-500/35 text-[10px] font-semibold">
                     Demo Mode
                   </span>
                 )}
@@ -67,19 +68,19 @@ export default function UserProfileDrawer({
           </div>
           <button
             onClick={onClose}
-            className="p-2 text-slate-400 hover:text-white rounded-lg hover:bg-slate-800 transition"
+            className="p-2 text-slate-400 hover:text-white rounded-xl hover:bg-slate-800 transition cursor-pointer"
           >
             <X size={20} />
           </button>
         </div>
 
         {/* Tab Navigation */}
-        <div className="flex border-b border-slate-800 bg-slate-900/60 px-2 text-xs font-medium">
+        <div className="flex border-b border-purple-500/15 bg-[#0a0a14]/60 px-2 text-xs font-semibold">
           <button
             onClick={() => setActiveTab('preferences')}
-            className={`flex-1 py-3 border-b-2 flex items-center justify-center gap-1.5 transition ${
+            className={`flex-1 py-3 border-b-2 flex items-center justify-center gap-1.5 transition cursor-pointer ${
               activeTab === 'preferences'
-                ? 'border-sky-500 text-sky-400 font-semibold'
+                ? 'border-purple-500 text-purple-300 font-bold'
                 : 'border-transparent text-slate-400 hover:text-slate-200'
             }`}
           >
@@ -88,9 +89,9 @@ export default function UserProfileDrawer({
           </button>
           <button
             onClick={() => setActiveTab('searches')}
-            className={`flex-1 py-3 border-b-2 flex items-center justify-center gap-1.5 transition ${
+            className={`flex-1 py-3 border-b-2 flex items-center justify-center gap-1.5 transition cursor-pointer ${
               activeTab === 'searches'
-                ? 'border-sky-500 text-sky-400 font-semibold'
+                ? 'border-purple-500 text-purple-300 font-bold'
                 : 'border-transparent text-slate-400 hover:text-slate-200'
             }`}
           >
@@ -99,9 +100,9 @@ export default function UserProfileDrawer({
           </button>
           <button
             onClick={() => setActiveTab('saved')}
-            className={`flex-1 py-3 border-b-2 flex items-center justify-center gap-1.5 transition ${
+            className={`flex-1 py-3 border-b-2 flex items-center justify-center gap-1.5 transition cursor-pointer ${
               activeTab === 'saved'
-                ? 'border-sky-500 text-sky-400 font-semibold'
+                ? 'border-purple-500 text-purple-300 font-bold'
                 : 'border-transparent text-slate-400 hover:text-slate-200'
             }`}
           >
@@ -110,9 +111,9 @@ export default function UserProfileDrawer({
           </button>
           <button
             onClick={() => setActiveTab('history')}
-            className={`flex-1 py-3 border-b-2 flex items-center justify-center gap-1.5 transition ${
+            className={`flex-1 py-3 border-b-2 flex items-center justify-center gap-1.5 transition cursor-pointer ${
               activeTab === 'history'
-                ? 'border-sky-500 text-sky-400 font-semibold'
+                ? 'border-purple-500 text-purple-300 font-bold'
                 : 'border-transparent text-slate-400 hover:text-slate-200'
             }`}
           >
@@ -135,7 +136,7 @@ export default function UserProfileDrawer({
                     <select
                       value={preferredOrigin}
                       onChange={(e) => setPreferredOrigin(e.target.value)}
-                      className="w-full bg-slate-950 border border-slate-800 rounded-xl px-3 py-2 text-sm text-slate-100 focus:outline-none focus:border-sky-500"
+                      className="w-full bg-[#07070d] border border-purple-500/20 rounded-xl px-3 py-2 text-sm text-slate-100 focus:outline-none focus:border-purple-500 transition"
                     >
                       <option value="MAA">Chennai (MAA)</option>
                       <option value="BOM">Mumbai (BOM)</option>
@@ -151,7 +152,7 @@ export default function UserProfileDrawer({
                     <select
                       value={preferredDest}
                       onChange={(e) => setPreferredDest(e.target.value)}
-                      className="w-full bg-slate-950 border border-slate-800 rounded-xl px-3 py-2 text-sm text-slate-100 focus:outline-none focus:border-sky-500"
+                      className="w-full bg-[#07070d] border border-purple-500/20 rounded-xl px-3 py-2 text-sm text-slate-100 focus:outline-none focus:border-purple-500 transition"
                     >
                       <option value="BOM">Mumbai (BOM)</option>
                       <option value="DEL">Delhi (DEL)</option>
@@ -169,7 +170,7 @@ export default function UserProfileDrawer({
                 <select
                   value={preferredAirline}
                   onChange={(e) => setPreferredAirline(e.target.value)}
-                  className="w-full bg-slate-950 border border-slate-800 rounded-xl px-3 py-2 text-sm text-slate-100 focus:outline-none focus:border-sky-500"
+                  className="w-full bg-[#07070d] border border-purple-500/20 rounded-xl px-3 py-2 text-sm text-slate-100 focus:outline-none focus:border-purple-500 transition"
                 >
                   <option value="6E">IndiGo (6E) - High OTP</option>
                   <option value="AI">Air India (AI)</option>
@@ -184,7 +185,7 @@ export default function UserProfileDrawer({
                 <select
                   value={cabinClass}
                   onChange={(e) => setCabinClass(e.target.value)}
-                  className="w-full bg-slate-950 border border-slate-800 rounded-xl px-3 py-2 text-sm text-slate-100 focus:outline-none focus:border-sky-500"
+                  className="w-full bg-[#07070d] border border-purple-500/20 rounded-xl px-3 py-2 text-sm text-slate-100 focus:outline-none focus:border-purple-500 transition"
                 >
                   <option value="Economy">Economy</option>
                   <option value="Premium Economy">Premium Economy</option>
@@ -195,7 +196,7 @@ export default function UserProfileDrawer({
 
               <button
                 type="submit"
-                className="w-full py-2.5 bg-sky-500 hover:bg-sky-400 text-white rounded-xl text-xs font-semibold flex items-center justify-center gap-2 shadow-lg shadow-sky-500/20 transition cursor-pointer"
+                className="w-full py-2.5 bg-gradient-to-r from-purple-600 to-violet-600 hover:from-purple-500 hover:to-violet-500 text-white rounded-xl text-xs font-bold flex items-center justify-center gap-2 shadow-lg shadow-purple-600/25 transition cursor-pointer"
               >
                 {saveSuccess ? (
                   <>
@@ -222,19 +223,19 @@ export default function UserProfileDrawer({
                       onSelectSearch(s);
                       onClose();
                     }}
-                    className="p-3.5 bg-slate-950 border border-slate-800 hover:border-sky-500/50 rounded-xl cursor-pointer transition flex items-center justify-between group"
+                    className="p-3.5 bg-[#07070d] border border-purple-500/15 hover:border-purple-500/40 rounded-xl cursor-pointer transition flex items-center justify-between group"
                   >
                     <div>
-                      <div className="flex items-center gap-2 text-sm font-semibold text-slate-100 group-hover:text-sky-400">
+                      <div className="flex items-center gap-2 text-sm font-semibold text-slate-100 group-hover:text-purple-300">
                         <span>{s.origin_city || s.origin}</span>
-                        <span className="text-slate-500">→</span>
+                        <span className="text-purple-400">→</span>
                         <span>{s.destination_city || s.destination}</span>
                       </div>
                       <p className="text-xs text-slate-400 mt-0.5">
                         {s.origin} to {s.destination} • {s.date}
                       </p>
                     </div>
-                    <span className="text-[10px] text-slate-500 bg-slate-900 px-2 py-1 rounded">
+                    <span className="text-[10px] text-purple-300 bg-purple-500/10 px-2 py-1 rounded border border-purple-500/20">
                       {s.searched_at}
                     </span>
                   </div>
@@ -254,11 +255,11 @@ export default function UserProfileDrawer({
                 user.saved_flights.map((fl: any, idx: number) => (
                   <div
                     key={idx}
-                    className="p-3.5 bg-slate-950 border border-slate-800 rounded-xl flex items-center justify-between"
+                    className="p-3.5 bg-[#07070d] border border-purple-500/15 rounded-xl flex items-center justify-between"
                   >
                     <div>
                       <div className="flex items-center gap-2">
-                        <span className="text-xs font-bold text-sky-400">{fl.flight_number}</span>
+                        <span className="text-xs font-bold text-purple-400">{fl.flight_number}</span>
                         <span className="text-xs text-slate-300 font-medium">{fl.airline}</span>
                       </div>
                       <p className="text-xs text-slate-400 mt-1">
@@ -268,7 +269,7 @@ export default function UserProfileDrawer({
                         <span className="text-[11px] font-semibold text-emerald-400">
                           {fl.ontime_pct}% On-Time
                         </span>
-                        <span className="text-[10px] px-1.5 py-0.5 rounded bg-emerald-500/10 text-emerald-400 border border-emerald-500/20">
+                        <span className="text-[10px] px-1.5 py-0.5 rounded bg-emerald-500/10 text-emerald-400 border border-emerald-500/20 font-bold">
                           {fl.risk_level} Risk
                         </span>
                       </div>
@@ -288,12 +289,12 @@ export default function UserProfileDrawer({
               </span>
               {user?.prediction_history?.length > 0 ? (
                 user.prediction_history.map((item: any, idx: number) => (
-                  <div key={idx} className="p-3.5 bg-slate-950 border border-slate-800 rounded-xl">
+                  <div key={idx} className="p-3.5 bg-[#07070d] border border-purple-500/15 rounded-xl">
                     <div className="flex items-center justify-between">
                       <span className="text-xs font-bold text-slate-200">{item.flight}</span>
                       <span className="text-[10px] text-slate-500">{item.timestamp}</span>
                     </div>
-                    <div className="grid grid-cols-3 gap-2 mt-2 pt-2 border-t border-slate-900 text-center text-xs">
+                    <div className="grid grid-cols-3 gap-2 mt-2 pt-2 border-t border-purple-500/10 text-center text-xs">
                       <div className="bg-emerald-500/10 p-1.5 rounded border border-emerald-500/20">
                         <span className="text-[10px] text-slate-400 block">On-Time</span>
                         <span className="font-bold text-emerald-400">{item.ontime_prob}</span>
@@ -317,9 +318,9 @@ export default function UserProfileDrawer({
         </div>
 
         {/* Drawer Footer */}
-        <div className="p-4 border-t border-slate-800 bg-slate-950 flex items-center justify-between">
+        <div className="p-4 border-t border-purple-500/15 bg-[#0a0a14] flex items-center justify-between">
           <div className="text-xs text-slate-400">
-            Role: <span className="text-slate-200 font-medium">{user?.role || 'Guest'}</span>
+            Role: <span className="text-purple-300 font-semibold">{user?.role || 'Guest'}</span>
           </div>
           <button
             onClick={() => {

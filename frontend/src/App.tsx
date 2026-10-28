@@ -1,75 +1,274 @@
-import { useState } from 'react';
-import { Plane, BarChart2, CloudRain, Microscope } from 'lucide-react';
+import { useState, useEffect } from 'react';
+import { Plane, BarChart2, CloudRain, Microscope, GraduationCap, LogIn } from 'lucide-react';
 import Home from './pages/Home';
+import FlightSearch from './pages/FlightSearch';
 import Predictor from './pages/Predictor';
 import ProbabilityLab from './pages/ProbabilityLab';
 import Stats from './pages/Stats';
+import AuthModal from './components/AuthModal';
+import UserProfileDrawer from './components/UserProfileDrawer';
 
 function App() {
   const [currentPage, setCurrentPage] = useState('home');
+  const [flightSearchParams, setFlightSearchParams] = useState<any>(null);
+
+  // User Authentication & Profile
+  const [user, setUser] = useState<any>(null);
+  const [isAuthModalOpen, setIsAuthModalOpen] = useState(false);
+  const [isProfileDrawerOpen, setIsProfileDrawerOpen] = useState(false);
+
+  // Fetch initial profile (defaults to faculty demo if available or guest)
+  useEffect(() => {
+    fetch('/api/user/profile')
+      .then(res => res.json())
+      .then(d => setUser(d))
+      .catch(() => {});
+  }, []);
 
   const navItems = [
-    { id: 'home', label: 'Home', icon: Plane },
-    { id: 'predictor', label: 'Predictor & Simulator', icon: CloudRain },
+    { id: 'home', label: 'Book Flights', icon: Plane },
+    { id: 'flights', label: 'Flight Results', icon: CloudRain },
+    { id: 'predictor', label: 'Custom Simulator', icon: CloudRain },
     { id: 'probability-lab', label: 'Probability Lab', icon: Microscope },
-    { id: 'stats', label: 'Statistics & Tests', icon: BarChart2 },
+    { id: 'stats', label: 'Statistical Insights', icon: BarChart2 },
   ];
+
+  const handleNavigate = (page: string, params?: any) => {
+    if (params) {
+      setFlightSearchParams(params);
+    }
+    setCurrentPage(page);
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  };
+
+  const launchFacultyDemo = async () => {
+    try {
+      const res = await fetch('/api/user/login', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ is_faculty_demo: true })
+      });
+      const data = await res.json();
+      if (res.ok) {
+        setUser(data.user);
+        // Preload Chennai to Mumbai search
+        const tomorrow = new Date(Date.now() + 86400000).toISOString().split('T')[0];
+        const demoParams = {
+          origin: 'MAA',
+          destination: 'BOM',
+          departure_date: tomorrow,
+          trip_type: 'one-way',
+          cabin_class: 'Economy',
+          passengers: { adults: 1, children: 0, infants: 0 },
+          special_fare: 'regular'
+        };
+        setFlightSearchParams(demoParams);
+        setCurrentPage('flights');
+      }
+    } catch (err) {
+      console.error("Demo login error:", err);
+    }
+  };
+
+  const handleUpdatePreferences = (prefs: any) => {
+    if (!user) return;
+    setUser({ ...user, preferences: prefs });
+    fetch('/api/user/preferences', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(prefs)
+    }).catch(() => {});
+  };
+
+  const handleSelectRecentSearch = (search: any) => {
+    handleNavigate('flights', {
+      origin: search.origin,
+      destination: search.destination,
+      departure_date: search.date || new Date(Date.now() + 86400000).toISOString().split('T')[0],
+      trip_type: 'one-way',
+      cabin_class: user?.preferences?.cabin_class || 'Economy',
+      passengers: { adults: 1, children: 0, infants: 0 },
+      special_fare: 'regular'
+    });
+  };
+
+  const handleLogout = () => {
+    setUser({
+      name: 'Guest Traveler',
+      email: 'guest@aero.local',
+      is_demo: false,
+      role: 'Guest',
+      preferences: {
+        preferred_origin: 'MAA',
+        preferred_destination: 'BOM',
+        cabin_class: 'Economy',
+        preferred_airline: '6E',
+        default_adults: 1,
+        special_fare: 'regular'
+      },
+      recent_searches: [],
+      saved_flights: [],
+      prediction_history: []
+    });
+  };
 
   const renderPage = () => {
     switch (currentPage) {
-      case 'home': return <Home onNavigate={setCurrentPage} />;
-      case 'predictor': return <Predictor />;
-      case 'probability-lab': return <ProbabilityLab />;
-      case 'stats': return <Stats />;
-      default: return <Home onNavigate={setCurrentPage} />;
+      case 'home':
+        return (
+          <Home
+            onNavigate={handleNavigate}
+            onLaunchFacultyDemo={launchFacultyDemo}
+            user={user}
+          />
+        );
+      case 'flights':
+        return (
+          <FlightSearch
+            initialParams={flightSearchParams}
+            user={user}
+            onSaveFlight={(fl) => {
+              if (user) {
+                const updated = [...(user.saved_flights || []), fl];
+                setUser({ ...user, saved_flights: updated });
+              }
+            }}
+          />
+        );
+      case 'predictor':
+        return <Predictor />;
+      case 'probability-lab':
+        return <ProbabilityLab />;
+      case 'stats':
+        return <Stats />;
+      default:
+        return (
+          <Home
+            onNavigate={handleNavigate}
+            onLaunchFacultyDemo={launchFacultyDemo}
+            user={user}
+          />
+        );
     }
   };
 
   return (
-    <div className="min-h-screen flex flex-col">
-      <header className="border-b border-slate-800 bg-slate-950/80 backdrop-blur-md sticky top-0 z-50">
+    <div className="min-h-screen flex flex-col bg-slate-950 text-slate-100">
+      
+      {/* Global Navigation Header */}
+      <header className="border-b border-slate-800 bg-slate-950/85 backdrop-blur-md sticky top-0 z-50">
         <div className="max-w-7xl mx-auto px-4 h-16 flex items-center justify-between">
-          <div className="flex items-center gap-2 cursor-pointer" onClick={() => setCurrentPage('home')}>
-            <div className="bg-sky-500/20 p-2 rounded-lg text-sky-400">
-              <Plane size={24} className="transform -rotate-45" />
+          
+          {/* Logo */}
+          <div className="flex items-center gap-2 cursor-pointer" onClick={() => handleNavigate('home')}>
+            <div className="bg-sky-500/20 p-2 rounded-xl text-sky-400">
+              <Plane size={22} className="transform -rotate-45" />
             </div>
-            <span className="font-semibold text-lg tracking-tight text-slate-100">AeroProb</span>
+            <div className="text-left">
+              <span className="font-black text-lg tracking-tight text-white block leading-none">
+                AeroProb
+              </span>
+              <span className="text-[10px] text-slate-400 font-medium tracking-wide">
+                Flight Booking & Delay Predictor
+              </span>
+            </div>
           </div>
-          <nav className="flex items-center gap-1">
+
+          {/* Nav Items */}
+          <nav className="hidden md:flex items-center gap-1">
             {navItems.map(item => (
               <button
                 key={item.id}
-                onClick={() => setCurrentPage(item.id)}
-                className={`px-4 py-2 rounded-md flex items-center gap-2 text-sm font-medium transition-colors ${
+                onClick={() => handleNavigate(item.id)}
+                className={`px-3.5 py-2 rounded-xl flex items-center gap-2 text-xs font-semibold transition cursor-pointer ${
                   currentPage === item.id 
-                    ? 'bg-sky-500/10 text-sky-400' 
-                    : 'text-slate-400 hover:text-slate-200 hover:bg-slate-800/50'
+                    ? 'bg-sky-500/15 text-sky-400 border border-sky-500/30' 
+                    : 'text-slate-400 hover:text-slate-200 hover:bg-slate-800/60'
                 }`}
               >
-                <item.icon size={16} />
-                <span className="hidden sm:inline">{item.label}</span>
+                <item.icon size={15} />
+                <span>{item.label}</span>
               </button>
             ))}
           </nav>
+
+          {/* Right Action Widgets: Faculty Demo Button & User Profile */}
+          <div className="flex items-center gap-2.5">
+            <button
+              onClick={launchFacultyDemo}
+              className="hidden sm:flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-gradient-to-r from-sky-500/20 to-indigo-500/20 border border-sky-500/40 text-sky-300 text-xs font-bold hover:scale-105 transition shadow-sm cursor-pointer"
+              title="One-click Faculty Demo: loads Dr. Sharma profile and MAA to BOM flight search"
+            >
+              <GraduationCap size={15} />
+              <span>Faculty Demo</span>
+            </button>
+
+            {user?.name ? (
+              <button
+                onClick={() => setIsProfileDrawerOpen(true)}
+                className="flex items-center gap-2 px-3 py-1.5 rounded-xl bg-slate-900 border border-slate-800 hover:border-slate-700 transition cursor-pointer"
+              >
+                <div className="w-6 h-6 rounded-full bg-sky-500 flex items-center justify-center text-white text-xs font-bold">
+                  {user.name.charAt(0)}
+                </div>
+                <span className="text-xs font-semibold text-slate-200 hidden sm:inline">
+                  {user.name}
+                </span>
+              </button>
+            ) : (
+              <button
+                onClick={() => setIsAuthModalOpen(true)}
+                className="flex items-center gap-1.5 px-3.5 py-1.5 rounded-xl bg-sky-500 hover:bg-sky-400 text-white text-xs font-bold transition shadow-md shadow-sky-500/20 cursor-pointer"
+              >
+                <LogIn size={14} />
+                <span>Sign In</span>
+              </button>
+            )}
+          </div>
+
         </div>
       </header>
 
+      {/* Main Page Render */}
       <main className="flex-1 w-full text-left">
         {renderPage()}
       </main>
 
-      <footer className="border-t border-slate-800 py-8 bg-slate-950 mt-12 text-left">
-        <div className="max-w-7xl mx-auto px-4 text-slate-400 text-sm flex flex-col md:flex-row justify-between items-center gap-4">
+      {/* Global Footer */}
+      <footer className="border-t border-slate-800 py-10 bg-slate-950 mt-12 text-left">
+        <div className="max-w-7xl mx-auto px-4 text-slate-400 text-xs flex flex-col md:flex-row justify-between items-center gap-4">
           <div>
-            <p className="font-semibold text-slate-300">Flight Delay & Cancellation Probability Predictor</p>
-            <p>Data strictly sourced from US BTS (2023), DGCA India, and Open-Meteo.</p>
+            <p className="font-bold text-slate-200 text-sm">
+              AeroProb • Flight Delay & Cancellation Probability Predictor
+            </p>
+            <p className="mt-1">
+              Grounded in 538,000+ US BTS flight operations, DGCA India official monthly OTP benchmarks, and Open-Meteo live weather telemetry.
+            </p>
           </div>
-          <div className="flex items-center gap-2 text-sky-400 bg-sky-500/10 px-3 py-1.5 rounded-full text-xs font-medium border border-sky-500/20">
+          <div className="flex items-center gap-2 text-sky-400 bg-sky-500/10 px-3 py-1.5 rounded-full text-xs font-semibold border border-sky-500/20">
             <Plane size={14} />
             <span>Real-time Aviation Intelligence</span>
           </div>
         </div>
       </footer>
+
+      {/* Authentication Modal */}
+      <AuthModal
+        isOpen={isAuthModalOpen}
+        onClose={() => setIsAuthModalOpen(false)}
+        onLoginSuccess={(userData) => setUser(userData)}
+      />
+
+      {/* User Preferences & History Drawer */}
+      <UserProfileDrawer
+        isOpen={isProfileDrawerOpen}
+        onClose={() => setIsProfileDrawerOpen(false)}
+        user={user}
+        onUpdatePreferences={handleUpdatePreferences}
+        onSelectSearch={handleSelectRecentSearch}
+        onLogout={handleLogout}
+      />
+
     </div>
   );
 }

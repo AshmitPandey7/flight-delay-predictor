@@ -1,7 +1,7 @@
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 
-from app.routers import predict, weather, schedule, airports, stats, probability_lab, insights, model_eval
+from app.routers import predict, weather, schedule, airports, stats, probability_lab, insights, model_eval, flights, user
 
 app = FastAPI(
     title="Flight Delay & Cancellation Probability Predictor",
@@ -25,6 +25,8 @@ app.include_router(stats.router)
 app.include_router(probability_lab.router)
 app.include_router(insights.router)
 app.include_router(model_eval.router)
+app.include_router(flights.router)
+app.include_router(user.router)
 
 @app.get("/")
 def root():

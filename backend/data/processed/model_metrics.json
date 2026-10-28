@@ -1,134 +1,165 @@
 {
-  "test_sample_size": 27649,
+  "test_sample_size": 30000,
+  "classes": [
+    "On-Time",
+    "Delayed",
+    "Cancelled"
+  ],
   "logistic_regression_calibrated": {
-    "accuracy": 0.8621,
-    "log_loss": 0.3992,
-    "brier_score": 0.2275,
+    "accuracy": 0.7613,
+    "log_loss": 0.6393,
+    "brier_score": 0.3747,
     "confusion_matrix": [
       [
-        20973,
-        4,
+        22839,
+        0,
         0
       ],
       [
-        2945,
-        2863,
+        6218,
+        0,
         0
       ],
       [
-        127,
-        737,
+        943,
+        0,
         0
       ]
     ],
+    "per_class": {
+      "On-Time": {
+        "precision": 0.7613,
+        "recall": 1.0,
+        "f1": 0.8645,
+        "support": 22839
+      },
+      "Delayed": {
+        "precision": 0.0,
+        "recall": 0.0,
+        "f1": 0.0,
+        "support": 6218
+      },
+      "Cancelled": {
+        "precision": 0.0,
+        "recall": 0.0,
+        "f1": 0.0,
+        "support": 943
+      }
+    },
+    "macro_avg": {
+      "precision": 0.2538,
+      "recall": 0.3333,
+      "f1": 0.2882
+    },
+    "coefficients": {
+      "On-Time": {
+        "dep_hour": -0.1036,
+        "day_of_week": 0.1279,
+        "dist_scaled": 0.0464,
+        "is_evening": 0.0054,
+        "is_weekend": 0.1488,
+        "carrier_del_rate": -0.0626,
+        "origin_del_rate": -0.142,
+        "carrier_cancel_rate": -0.1242
+      },
+      "Delayed": {
+        "dep_hour": 0.1482,
+        "day_of_week": 0.1046,
+        "dist_scaled": 0.0826,
+        "is_evening": 0.0274,
+        "is_weekend": 0.0199,
+        "carrier_del_rate": 0.1059,
+        "origin_del_rate": 0.0469,
+        "carrier_cancel_rate": -0.1122
+      },
+      "Cancelled": {
+        "dep_hour": -0.0445,
+        "day_of_week": -0.2325,
+        "dist_scaled": -0.129,
+        "is_evening": -0.0328,
+        "is_weekend": -0.1687,
+        "carrier_del_rate": -0.0433,
+        "origin_del_rate": 0.0951,
+        "carrier_cancel_rate": 0.2364
+      }
+    },
     "calibration_curve": [
       {
-        "pred_bin": 0.05,
-        "mean_pred": 0.083,
-        "empirical_prob": 0.109,
-        "count": 9514
-      },
-      {
         "pred_bin": 0.15,
-        "mean_pred": 0.13,
-        "empirical_prob": 0.131,
-        "count": 14060
+        "mean_pred": 0.178,
+        "empirical_prob": 0.178,
+        "count": 12759
       },
       {
         "pred_bin": 0.25,
-        "mean_pred": 0.219,
-        "empirical_prob": 0.149,
-        "count": 471
+        "mean_pred": 0.231,
+        "empirical_prob": 0.228,
+        "count": 16995
       },
       {
-        "pred_bin": 0.75,
-        "mean_pred": 0.746,
-        "empirical_prob": 0.266,
-        "count": 972
-      },
-      {
-        "pred_bin": 0.85,
-        "mean_pred": 0.812,
-        "empirical_prob": 0.613,
-        "count": 62
-      },
-      {
-        "pred_bin": 0.95,
-        "mean_pred": 0.939,
-        "empirical_prob": 0.998,
-        "count": 2570
+        "pred_bin": 0.35,
+        "mean_pred": 0.311,
+        "empirical_prob": 0.321,
+        "count": 246
       }
     ]
   },
   "naive_bayes": {
-    "accuracy": 0.8736,
-    "log_loss": 0.6984,
-    "brier_score": 0.2421,
-    "calibration_curve": [
-      {
-        "pred_bin": 0.05,
-        "mean_pred": 0.004,
-        "empirical_prob": 0.122,
-        "count": 24043
+    "accuracy": 0.7393,
+    "log_loss": 0.6785,
+    "brier_score": 0.3984,
+    "confusion_matrix": [
+      [
+        21709,
+        1099,
+        31
+      ],
+      [
+        5735,
+        466,
+        17
+      ],
+      [
+        885,
+        53,
+        5
+      ]
+    ],
+    "per_class": {
+      "On-Time": {
+        "precision": 0.7663,
+        "recall": 0.9505,
+        "f1": 0.8485,
+        "support": 22839
       },
-      {
-        "pred_bin": 0.25,
-        "mean_pred": 0.267,
-        "empirical_prob": 0.252,
-        "count": 222
+      "Delayed": {
+        "precision": 0.288,
+        "recall": 0.0749,
+        "f1": 0.1189,
+        "support": 6218
       },
-      {
-        "pred_bin": 0.35,
-        "mean_pred": 0.342,
-        "empirical_prob": 0.234,
-        "count": 278
-      },
-      {
-        "pred_bin": 0.45,
-        "mean_pred": 0.449,
-        "empirical_prob": 0.231,
-        "count": 117
-      },
-      {
-        "pred_bin": 0.55,
-        "mean_pred": 0.547,
-        "empirical_prob": 0.246,
-        "count": 191
-      },
-      {
-        "pred_bin": 0.65,
-        "mean_pred": 0.648,
-        "empirical_prob": 0.315,
-        "count": 73
-      },
-      {
-        "pred_bin": 0.75,
-        "mean_pred": 0.767,
-        "empirical_prob": 0.947,
-        "count": 209
-      },
-      {
-        "pred_bin": 0.85,
-        "mean_pred": 0.85,
-        "empirical_prob": 0.999,
-        "count": 765
-      },
-      {
-        "pred_bin": 0.95,
-        "mean_pred": 0.968,
-        "empirical_prob": 0.964,
-        "count": 1741
+      "Cancelled": {
+        "precision": 0.0943,
+        "recall": 0.0053,
+        "f1": 0.01,
+        "support": 943
       }
-    ]
+    },
+    "macro_avg": {
+      "precision": 0.3829,
+      "recall": 0.3436,
+      "f1": 0.3258
+    }
   },
   "feature_names": [
     "dep_hour",
     "day_of_week",
     "dist_scaled",
-    "weather_severity",
+    "is_evening",
+    "is_weekend",
     "carrier_del_rate",
     "origin_del_rate",
-    "is_evening",
-    "is_weekend"
-  ]
+    "carrier_cancel_rate"
+  ],
+  "anti_leakage_audit_passed": true
 }

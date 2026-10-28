@@ -73,3 +73,52 @@ def test_hypothesis_tests_endpoint():
     assert "tests" in data
     assert "welch_t_test" in data["tests"]
     assert "chi_square_test" in data["tests"]
+
+def test_flight_search_chennai_to_mumbai():
+    payload = {
+        "origin": "MAA",
+        "destination": "BOM",
+        "departure_date": "2026-11-20",
+        "cabin_class": "Economy",
+        "trip_type": "one-way",
+        "passengers": {"adults": 1, "children": 0, "infants": 0},
+        "special_fare": "regular"
+    }
+    response = client.post("/api/flights/search", json=payload)
+    assert response.status_code == 200
+    data = response.json()
+    assert "flights" in data
+    assert len(data["flights"]) > 0
+    first_fl = data["flights"][0]
+    assert "prediction" in first_fl
+    assert "probabilities" in first_fl["prediction"]
+    assert "expected_delay_minutes" in first_fl["prediction"]
+    assert "booking_links" in first_fl
+    assert any(f.get("is_smart_recommended") for f in data["flights"])
+
+def test_faculty_demo_login():
+    response = client.post("/api/user/login", json={"is_faculty_demo": True})
+    assert response.status_code == 200
+    data = response.json()
+    assert "token" in data
+    assert data["user"]["is_demo"] is True
+    assert data["user"]["name"] == "Dr. Sharma"
+    assert data["user"]["preferences"]["preferred_origin"] == "MAA"
+
+def test_flight_comparison():
+    search_res = client.post("/api/flights/search", json={
+        "origin": "MAA",
+        "destination": "BOM",
+        "departure_date": "2026-11-20"
+    }).json()
+    sample_flights = search_res["flights"][:2]
+    
+    comp_res = client.post("/api/flights/compare", json={
+        "flight_ids": [f["id"] for f in sample_flights],
+        "flights": sample_flights
+    })
+    assert comp_res.status_code == 200
+    comp_data = comp_res.json()
+    assert comp_data["compared_count"] == 2
+    assert "best_price_flight_id" in comp_data
+    assert "lowest_delay_risk_flight_id" in comp_data

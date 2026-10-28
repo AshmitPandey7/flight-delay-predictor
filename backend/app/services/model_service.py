@@ -106,8 +106,9 @@ class ModelService:
                     break
                     
         # Feature vector for ML model
-        carrier_del_rate = self.artifacts["carrier_stats"].get(carrier, {}).get("p_delayed", 0.20) if self.artifacts else 0.20
-        origin_del_rate = self.artifacts["airport_stats"].get(origin, {}).get("p_delayed", 0.20) if self.artifacts else 0.20
+        carrier_del_rate = self.artifacts["carrier_stats"].get(carrier, {}).get("p_delayed", 0.2095) if self.artifacts else 0.2095
+        origin_del_rate = self.artifacts["airport_stats"].get(origin, {}).get("p_delayed", 0.2095) if self.artifacts else 0.2095
+        carrier_cancel_rate = self.artifacts["carrier_stats"].get(carrier, {}).get("p_cancelled", 0.0191) if self.artifacts else 0.0191
         
         # If outside training data and DGCA matched, use DGCA prior
         effective_n = 538837 # total BTS observations
@@ -169,8 +170,8 @@ class ModelService:
         if not is_outside_training and self.artifacts:
             try:
                 features = np.array([[
-                    dep_hour, day_of_week, 0.8, weather_sev,
-                    carrier_del_rate, origin_del_rate, int(is_evening), int(day_of_week in [5, 6])
+                    dep_hour, day_of_week, 0.8, int(is_evening),
+                    int(day_of_week in [5, 6]), carrier_del_rate, origin_del_rate, carrier_cancel_rate
                 ]])
                 features_scaled = self.artifacts["scaler"].transform(features)
                 calib_probs = self.artifacts["calibrated_lr"].predict_proba(features_scaled)[0]

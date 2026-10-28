@@ -93,3 +93,9 @@ def fetch_live_weather(lat: float, lon: float) -> dict:
             "is_fog": False,
             "is_freezing": False
         }
+
+class WeatherService:
+    def get_forecast_or_historical(self, lat: float, lon: float, target_date: str = None) -> dict:
+        return fetch_live_weather(lat, lon)
+
+weather_service = WeatherService()

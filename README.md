@@ -1,4 +1,4 @@
-# ✈️ AeroProb • Flight Delay & Cancellation Probability Predictor
+# AeroProb • Flight Delay & Cancellation Probability Predictor
 
 [![FastAPI](https://img.shields.io/badge/FastAPI-0.110+-009688.svg?style=flat&logo=fastapi&logoColor=white)](https://fastapi.tiangolo.com)
 [![React](https://img.shields.io/badge/React-19-61DAFB.svg?style=flat&logo=react&logoColor=black)](https://react.dev/)
@@ -15,7 +15,7 @@ Engineered around a **Black, White, and Electric Purple/Violet** visual identity
 
 ---
 
-## 🌟 Key Features
+## Key Features
 
 ### 1. MakeMyTrip-Inspired Flight Booking & Search
 * **Frictionless Route Discovery**: One-way and round-trip searches across top Indian metro airports (Chennai MAA, Mumbai BOM, Delhi DEL, Bengaluru BLR, Hyderabad HYD, Kolkata CCU, Ahmedabad AMD, etc.) and international gateways.
@@ -137,7 +137,7 @@ flight-delay-predictor/
 
 ---
 
-## 🚀 Getting Started
+## Getting Started
 
 ### Prerequisites
 * **Python 3.10+** (tested on Python 3.11, 3.12, 3.13)
@@ -229,7 +229,7 @@ tests/test_e2e_journey.py::test_edge_case_missing_weather PASSED         [100%]
 
 ---
 
-## 📡 REST API Reference
+## REST API Reference
 
 | Method | Endpoint | Description |
 | :--- | :--- | :--- |
@@ -249,7 +249,7 @@ tests/test_e2e_journey.py::test_edge_case_missing_weather PASSED         [100%]
 
 ---
 
-## 📊 Data Sources & Provenance
+## Data Sources & Provenance
 
 1. **US Bureau of Transportation Statistics (BTS)**:
    * Source: [TranStats Reporting Carrier On-Time Performance](https://www.transtats.bts.gov)
@@ -266,6 +266,6 @@ tests/test_e2e_journey.py::test_edge_case_missing_weather PASSED         [100%]
 
 ---
 
-## 📄 License
+## License
 
 This project is licensed under the [MIT License](LICENSE).
